@@ -4,7 +4,8 @@ import './App.css';
 // import MyComponent from './BookShelf/MyComponent'; //MyComponent 파일을 불러옵니다.
 // import EventPractice from './BookShelf/EventPractice';
 // import ValidationSample from './BookShelf/ValidationSample';
-import ScrollBox from './BookShelf/ScrollBox';
+// import ScrollBox from './BookShelf/ScrollBox';
+import IterationSample from './BookShelf/IterationSample';
 
 class App extends Component {
   render() {
@@ -19,10 +20,13 @@ class App extends Component {
       // <ValidationSample/>
 
       //5장 컴포넌트에 ref 달기
-      <div>
-        <ScrollBox ref={(ref) => this.scrollBox=ref}/>
-        <button onClick={() => this.scrollBox.scrollToBottom()}>맨밑으로</button>
-      </div>
+      // <div>
+      //   <ScrollBox ref={(ref) => this.scrollBox=ref}/>
+      //   <button onClick={() => this.scrollBox.scrollToBottom()}>맨밑으로</button>
+      // </div>
+
+      //6장 데이터 배열을 컴포넌트 배열로 map하기
+      <IterationSample></IterationSample>
     );
   }
 }
