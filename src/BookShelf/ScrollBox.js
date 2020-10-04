@@ -7,6 +7,20 @@ class ScrollBox extends Component {
      * 2. 컴포넌트 ref 달기
      * 3. reef를 이용하여 컴포넌트 내부 메서드 호출
      */
+
+    /**
+     * @description 스크롤 맨 아래로 이동
+     */
+    scrollToBottom = () => {
+        const { scrollHeight, clientHeight } = this.box;
+        /** 앞 코드에는 비구조화 할당 문법을 사용했습니다.
+            다음 코드와 같은 의미입니다.
+            const scrollHeight = this.box.scrollHeight;
+            const clientHdight = this.box.clientHeight;
+         */
+        this.box.scrollTop = scrollHeight - clientHeight;
+    }
+
     render() {
         const style = {
             border: '1px solid black',
