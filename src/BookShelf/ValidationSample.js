@@ -21,12 +21,16 @@ class ValidationSample extends Component {
             clicked: true,
             validated: this.state.password === '0000'
         });
+        this.inputA.focus();
     }
 
     render() {
         return (
             <div>
+                {/* 5장 ref: DOM에 이름달기 */}
+                {/* this.inputA은 input 요소의 DOM을 가리킵니다. */}
                 <input
+                    ref={(ref) => {this.inputA=ref}}
                     type="password"
                     value={this.state.password}
                     onChange={this.handleChange}

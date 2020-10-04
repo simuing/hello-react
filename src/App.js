@@ -1,9 +1,10 @@
 import React from 'react';
 // import logo from './logo.svg';
 import './App.css';
-// import MyComponent from './MyComponent'; //MyComponent 파일을 불러옵니다.
-import EventPractice from './EventPractice';
-import ValidationSample from './ValidationSample';
+// import MyComponent from './BookShelf/MyComponent'; //MyComponent 파일을 불러옵니다.
+// import EventPractice from './BookShelf/EventPractice';
+// import ValidationSample from './BookShelf/ValidationSample';
+import ScrollBox from './BookShelf/ScrollBox';
 
 function App() {
   return ( 
@@ -14,7 +15,8 @@ function App() {
     // <EventPractice/>
 
     //5장 DOM에 이름 달기
-    <ValidationSample/>
+    // <ValidationSample/>
+    <ScrollBox></ScrollBox>
   );
 }
 
