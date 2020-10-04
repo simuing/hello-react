@@ -1,9 +1,8 @@
 import React from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
-import MyComponent from './MyComponent'; //MyComponent 파일을 불러옵니다.
+// import MyComponent from './MyComponent'; //MyComponent 파일을 불러옵니다.
 import EventPractice from './EventPractice';
-
 import ValidationSample from './ValidationSample';
 
 function App() {
