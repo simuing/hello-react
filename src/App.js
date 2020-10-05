@@ -5,9 +5,27 @@ import './App.css';
 // import EventPractice from './BookShelf/EventPractice';
 // import ValidationSample from './BookShelf/ValidationSample';
 // import ScrollBox from './BookShelf/ScrollBox';
-import IterationSample from './BookShelf/IterationSample';
+// import IterationSample from './BookShelf/IterationSample';
+import LifeCycleSample from './BookShelf/LifeCycleSample';
+
+//7장 컴포넌트의 라이프사이클 메서드
+function getRandomColor() {
+  return '#' + Math.floor(Math.random() * 16777215).toString(16);
+}
 
 class App extends Component {
+
+  //7장 컴포넌트의 라이프사이클 메서드
+  state = {
+    color: '#000000'
+  }
+
+  handleClick = () => {
+    this.setState({
+      color: getRandomColor()
+    });
+  }
+
   render() {
     return ( 
       //3장 컴포넌트 생성
@@ -26,7 +44,13 @@ class App extends Component {
       // </div>
 
       //6장 데이터 배열을 컴포넌트 배열로 map하기
-      <IterationSample></IterationSample>
+      // <IterationSample></IterationSample>
+
+      //7장 컴포넌트의 라이프사이클 메서드
+      <div>
+        <button onClick={this.handleClick}>랜덤색상</button>
+        <LifeCycleSample color={this.state.color}></LifeCycleSample>
+      </div>
     );
   }
 }
