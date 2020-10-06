@@ -6,7 +6,10 @@ import './App.css';
 // import ValidationSample from './BookShelf/ValidationSample';
 // import ScrollBox from './BookShelf/ScrollBox';
 // import IterationSample from './BookShelf/IterationSample';
-import LifeCycleSample from './BookShelf/LifeCycleSample';
+// import LifeCycleSample from './BookShelf/LifeCycleSample';
+import Hello1 from './BookShelf/FunctionComponentSample';
+import Hello2 from './BookShelf/FunctionComponentSample';
+import Hello3 from './BookShelf/FunctionComponentSample';
 
 //7장 컴포넌트의 라이프사이클 메서드
 function getRandomColor() {
@@ -47,9 +50,16 @@ class App extends Component {
       // <IterationSample></IterationSample>
 
       //7장 컴포넌트의 라이프사이클 메서드
+      // <div>
+      //   <button onClick={this.handleClick}>랜덤색상</button>
+      //   <LifeCycleSample color={this.state.color}></LifeCycleSample>
+      // </div>
+
+      //8장 함수형 컴포넌트
       <div>
-        <button onClick={this.handleClick}>랜덤색상</button>
-        <LifeCycleSample color={this.state.color}></LifeCycleSample>
+        <Hello1></Hello1>
+        {/* <Hello2></Hello2>
+        <Hello3></Hello3> */}
       </div>
     );
   }
