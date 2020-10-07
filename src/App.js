@@ -7,9 +7,7 @@ import './App.css';
 // import ScrollBox from './BookShelf/ScrollBox';
 // import IterationSample from './BookShelf/IterationSample';
 // import LifeCycleSample from './BookShelf/LifeCycleSample';
-import Hello1 from './BookShelf/FunctionComponentSample';
-import Hello2 from './BookShelf/FunctionComponentSample';
-import Hello3 from './BookShelf/FunctionComponentSample';
+import Hello from './BookShelf/FunctionComponentSample';
 
 //7장 컴포넌트의 라이프사이클 메서드
 function getRandomColor() {
@@ -19,15 +17,15 @@ function getRandomColor() {
 class App extends Component {
 
   //7장 컴포넌트의 라이프사이클 메서드
-  state = {
-    color: '#000000'
-  }
+  // state = {
+  //   color: '#000000'
+  // }
 
-  handleClick = () => {
-    this.setState({
-      color: getRandomColor()
-    });
-  }
+  // handleClick = () => {
+  //   this.setState({
+  //     color: getRandomColor()
+  //   });
+  // }
 
   render() {
     return ( 
@@ -57,9 +55,7 @@ class App extends Component {
 
       //8장 함수형 컴포넌트
       <div>
-        <Hello1></Hello1>
-        {/* <Hello2></Hello2>
-        <Hello3></Hello3> */}
+        <Hello></Hello>
       </div>
     );
   }
