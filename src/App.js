@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 // import logo from './logo.svg';
-import './App.css';
+import styles from './App.css';
 // import MyComponent from './BookShelf/MyComponent'; //MyComponent 파일을 불러옵니다.
 // import EventPractice from './BookShelf/EventPractice';
 // import ValidationSample from './BookShelf/ValidationSample';
 // import ScrollBox from './BookShelf/ScrollBox';
 // import IterationSample from './BookShelf/IterationSample';
 // import LifeCycleSample from './BookShelf/LifeCycleSample';
-import Hello from './BookShelf/FunctionComponentSample';
+// import Hello from './BookShelf/FunctionComponentSample';
 
 //7장 컴포넌트의 라이프사이클 메서드
-function getRandomColor() {
-  return '#' + Math.floor(Math.random() * 16777215).toString(16);
-}
+// function getRandomColor() {
+//   return '#' + Math.floor(Math.random() * 16777215).toString(16);
+// }
 
 class App extends Component {
 
@@ -54,8 +54,12 @@ class App extends Component {
       // </div>
 
       //8장 함수형 컴포넌트
-      <div>
-        <Hello></Hello>
+      // <div>
+      //   <Hello></Hello>
+      // </div>
+
+      //9장 컴포넌트 스타일링
+      <div className={[styles.box, styles.blue].join(' ')}>
       </div>
     );
   }

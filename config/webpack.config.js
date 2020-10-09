@@ -94,8 +94,8 @@ module.exports = function(webpackEnv) {
         //TODO ADD 코드
         //modules: CSS Module 활성화
         //localIdentName: CSS Module에서 고유하게 생성되는 클래스네임 형식 결정
-        modules: true,
-        localIdentName: '[path][name]__[local]--[hash:base64:5]'
+        // modules: true,
+        // localIdentName: '[path][name]__[local]--[hash:base64:5]'
       },
       {
         //TODO ADD 주석
