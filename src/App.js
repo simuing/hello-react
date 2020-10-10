@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 // import logo from './logo.svg';
-import classNames from 'classnames';
-import classNamesBind from 'classnames/bind';
+// import classNames from 'classnames';
+import classNames from 'classnames/bind';
 import styles from './App.css';
+import scssStyles from './App.scss';
 
 // import MyComponent from './BookShelf/MyComponent'; //MyComponent 파일을 불러옵니다.
 // import EventPractice from './BookShelf/EventPractice';
@@ -18,7 +19,21 @@ import styles from './App.css';
 // }
 
 //9장 컴포넌트 스타일링
-const cx = classNamesBind.bind(styles);
+const cx = classNames.bind(styles);
+const scssCx = classNames.bind(scssStyles);
+
+/* classNames 사용 예제 */
+// classNames('foo', 'bar'); // => 'foo bar'
+// classNames('foo', { bar: true }); // => 'foo bar'
+// classNames({ 'foo-bar': true }); //=> 'foo-bar'
+// classNames({ 'foo-bar': false}); // => ''
+// classNames({ foo: true}, { bar: true }); //=> 'foo bar'
+// classNames({ foo: true, bar: true}); //=> 'foo bar'
+// classNames(['foo', 'bar']); //=> 'foo bar'
+// 여러 개의 형식을 동시에 받아 올 수 있습니다.
+// classNames('foo', { bar: true, duck: false }, 'baz', { quux: true }); //=> 'foo bar baz quux'
+// false, null, 0, undefined 는 무시됩니다.
+// classNames(null, false, 'bar', undefined, 0, 1, { baz: null }, ''); //=> 'bar 1'
 
 class App extends Component {
 
@@ -71,6 +86,7 @@ class App extends Component {
         <div className={[styles.box, styles.box1, styles.blue].join(' ')}></div>
         <div className={classNames(styles.box, styles.box2, styles.red)}></div>
         <div className={cx('box', 'box3', 'green')}></div>
+        <div className={[cx('box', 'box4', 'red'),scssCx('box')].join(' ')}></div>
       </div>
     );
   }
