@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 // import logo from './logo.svg';
+import classNames from 'classnames';
+import classNamesBind from 'classnames/bind';
 import styles from './App.css';
+
 // import MyComponent from './BookShelf/MyComponent'; //MyComponent 파일을 불러옵니다.
 // import EventPractice from './BookShelf/EventPractice';
 // import ValidationSample from './BookShelf/ValidationSample';
@@ -14,6 +17,9 @@ import styles from './App.css';
 //   return '#' + Math.floor(Math.random() * 16777215).toString(16);
 // }
 
+//9장 컴포넌트 스타일링
+const cx = classNamesBind.bind(styles);
+
 class App extends Component {
 
   //7장 컴포넌트의 라이프사이클 메서드
@@ -26,6 +32,8 @@ class App extends Component {
   //     color: getRandomColor()
   //   });
   // }
+
+  
 
   render() {
     return ( 
@@ -59,7 +67,10 @@ class App extends Component {
       // </div>
 
       //9장 컴포넌트 스타일링
-      <div className={[styles.box, styles.blue].join(' ')}>
+      <div>
+        <div className={[styles.box, styles.box1, styles.blue].join(' ')}></div>
+        <div className={classNames(styles.box, styles.box2, styles.red)}></div>
+        <div className={cx('box', 'box3', 'green')}></div>
       </div>
     );
   }
