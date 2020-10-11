@@ -1,5 +1,8 @@
+@import 'styles/utils';
+
 .box {
   &:hover {
-    background-color: blue;
+    @include border-at-round();
+    background-color: $color;
   }
 }

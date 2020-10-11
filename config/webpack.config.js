@@ -126,6 +126,15 @@ module.exports = function(webpackEnv) {
           sourceMap: isEnvProduction && shouldUseSourceMap,
         },
       },
+      { //TODO ADD
+        loader: require.resolve('sass-loader'),
+        options: {
+          sassOptions: {
+            includePaths: [paths.styles]
+          }
+        }
+      }
+
     ].filter(Boolean);
     if (preProcessor) {
       loaders.push(
