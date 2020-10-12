@@ -1,6 +1,11 @@
 @import 'utils.scss';
 
 .button {
+    /*
+        open-color를 적용하면 변수를 사용하여 여러 가지 색상을 쉽게 적용할 수 있습니다.
+        변수 형식은 '$oc-색상이름-명암'입니다.
+        색상 종류 참고 http://yeun.github.io/open-color/
+    */
     background: $oc-green-7;
     transition: all .2s ease-in;
     display: inline-block;
@@ -12,7 +17,38 @@
     font-size: 2rem;
     font-weight: 500;
     border-radius: 4px;
-    cursor: pointer
+    cursor: pointer;
     
-    // @include place-at-center();
+    @include place-at-center();
+
+    width: 1200px;
+
+    /*
+        반응형 디자인
+        기본 넓이를 1200px로 설정했고, 
+        창 크기는 1200px 미만이면 1024px
+        그것보다 더 작으면 768px로 설정했으며,
+        페이지의 90% 크기로 설정했습니다.
+    */
+    
+    @include media("<huge") {
+        width: 1024px;
+    }    
+
+    @include media("<large") {
+        width: 768px;
+    }
+
+    @include media("<medium") {
+        width: 90%;
+    }
+
+    // 마우스 상태에 따라 다른 효과 지정
+    &:hover {
+        background: $oc-green-6;
+    }
+    &:active {
+        margin-top: 3px;
+        background: $oc-green-8;
+    }
 }

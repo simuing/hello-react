@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 // import logo from './logo.svg';
 // import classNames from 'classnames';
-import classNames from 'classnames/bind';
-import styles from './App.css';
-import scssStyles from './App.scss';
+// import classNames from 'classnames/bind';
+// import styles from './App.css';
+// import scssStyles from './App.scss';
+import Button from './components/Button';
 
 // import MyComponent from './BookShelf/MyComponent'; //MyComponent 파일을 불러옵니다.
 // import EventPractice from './BookShelf/EventPractice';
@@ -19,8 +20,8 @@ import scssStyles from './App.scss';
 // }
 
 //9장 컴포넌트 스타일링
-const cx = classNames.bind(styles);
-const scssCx = classNames.bind(scssStyles);
+// const cx = classNames.bind(styles);
+// const scssCx = classNames.bind(scssStyles);
 
 /* classNames 사용 예제 */
 // classNames('foo', 'bar'); // => 'foo bar'
@@ -81,12 +82,17 @@ class App extends Component {
       //   <Hello></Hello>
       // </div>
 
-      //9장 컴포넌트 스타일링
+      //9장 컴포넌트 스타일링 9.1
+      // <div>
+      //   <div className={[styles.box, styles.box1, styles.blue].join(' ')}></div>
+      //   <div className={classNames(styles.box, styles.box2, styles.red)}></div>
+      //   <div className={cx('box', 'box3', 'green')}></div>
+      //   <div className={[cx('box', 'box4', 'red'),scssCx('box')].join(' ')}></div>
+      // </div>
+
+      //9장 컴포넌트 스타일링 9.2 버튼추가
       <div>
-        <div className={[styles.box, styles.box1, styles.blue].join(' ')}></div>
-        <div className={classNames(styles.box, styles.box2, styles.red)}></div>
-        <div className={cx('box', 'box3', 'green')}></div>
-        <div className={[cx('box', 'box4', 'red'),scssCx('box')].join(' ')}></div>
+        <Button>버튼</Button>
       </div>
     );
   }
