@@ -130,7 +130,7 @@ module.exports = function(webpackEnv) {
         loader: require.resolve('sass-loader'),
         options: {
           sassOptions: {
-            includePaths: [paths.styles]
+            includePaths: [paths.appSrc + '/styles']
           }
         }
       }
@@ -469,14 +469,26 @@ module.exports = function(webpackEnv) {
             {
               test: sassRegex,
               exclude: sassModuleRegex,
-              use: getStyleLoaders(
-                {
-                  importLoaders: 2,
-                  sourceMap: isEnvProduction && shouldUseSourceMap,
-                  modules: true
-                },
-                'sass-loader'
-              ),
+              use: getStyleLoaders({
+                importLoaders: 2,
+                sourceMap: isEnvProduction && shouldUseSourceMap,
+                modules: true,
+              }).concat({
+                loader: require.resolve('sass-loader'),
+                options: {
+                  includePaths: [paths.appSrc + '/styles'],
+                  sourceMap: isEnvProduction && shouldUseSourceMap
+                }
+              }),
+
+              // use: getStyleLoaders(
+              //   {
+              //     importLoaders: 2,
+              //     sourceMap: isEnvProduction && shouldUseSourceMap,
+              //     modules: true
+              //   },
+              //   'sass-loader'
+              // ),
               // Don't consider CSS imports dead code even if the
               // containing package claims to have no side effects.
               // Remove this when webpack adds a warning or an error for this.

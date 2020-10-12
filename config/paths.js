@@ -82,9 +82,9 @@ module.exports = {
   proxySetup: resolveApp('src/setupProxy.js'),
   appNodeModules: resolveApp('node_modules'),
   publicUrl: getPublicUrl(resolveApp('package.json')),
-  servedPath: getServedPath(resolveApp('package.json')),
+  servedPath: getServedPath(resolveApp('package.json'))
   //9장 컴포넌트 스타일링-경로간소화
-  styles: resolveApp('src/styles')
+  // styles: resolveApp('src/styles')
 };
 
 

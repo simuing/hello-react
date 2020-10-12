@@ -9,9 +9,16 @@ $breakpoints: ( //추후 반응형 디자인 코드 작성 기준점으로 사�
     huge: 1200px
 );
 
+$size: 100px;
 $color: blue;
 
 @mixin border-at-round() {
   border-radius: 30px;
+  transform: translate(-50%, -50%);
+}
+
+@mixin place-at-center() {
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
 }
