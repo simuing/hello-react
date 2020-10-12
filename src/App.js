@@ -4,7 +4,8 @@ import React, { Component } from 'react';
 // import classNames from 'classnames/bind';
 // import styles from './App.css';
 // import scssStyles from './App.scss';
-import Button from './components/Button';
+// import Button from './components/Button';
+import StyledButton from './components/StyledButton/StyledButton';
 
 // import MyComponent from './BookShelf/MyComponent'; //MyComponent 파일을 불러옵니다.
 // import EventPractice from './BookShelf/EventPractice';
@@ -91,8 +92,14 @@ class App extends Component {
       // </div>
 
       //9장 컴포넌트 스타일링 9.2 버튼추가
+      // <div>
+      //   <Button>버튼</Button>
+      // </div>
+
+      //9장 컴포넌트 스타일링 9.3 
       <div>
-        <Button>버튼</Button>
+        <StyledButton>버튼</StyledButton>
+        <StyledButton big>big 버튼</StyledButton>
       </div>
     );
   }
