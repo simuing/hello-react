@@ -1,15 +1,15 @@
-## 일정 관리 웹 어플리케이션 스터디용 프로젝트
+# 일정 관리 웹 어플리케이션 스터디용 프로젝트
 
-# 프로젝트 생성
+### 프로젝트 생성
 $ npx create-react-app todo-list
 
-# 프로젝트 환경설정 eject
+### 프로젝트 환경설정 eject
 $ yarn eject
 
-# Sass 관련 모듈 및 classnames 설치
+### Sass 관련 모듈 및 classnames 설치
 $ yarn add sass-loader node-sass classnames
 
-# webpack.config.js 설정 파일 수정
+### webpack.config.js 설정 파일 수정
 <!-- 기존 소스
     {
         test: sassRegex,
@@ -52,7 +52,7 @@ $ yarn add sass-loader node-sass classnames
     },
 -->
 
-# config/paths.js 의 styles 디렉터리 정의
+### config/paths.js 의 styles 디렉터리 정의
 <!--
 module.exports = {
   (...),
@@ -60,11 +60,11 @@ module.exports = {
 };
  -->
 
-# open-color 적용
+### open-color 적용
 $ yarn add open-color
 
-# src/styles 디렉터리에 utils.scss 파일을 만들고 open-color 라이브러리 불러오기
+### src/styles 디렉터리에 utils.scss 파일을 만들고 open-color 라이브러리 불러오기
 디렉터리 : src/styles/utils.scss
 파일내용 : @import '~open-color/open-color';
 
-# 메인 스타일 설정
+### 메인 스타일 설정
