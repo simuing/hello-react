@@ -5,6 +5,12 @@ import classNames from 'classnames/bind';
 const cx = classNames.bind(styles);
 
 class TodoItem extends Component {
+    //TodoItem이 추가되었을때 불필요한 렌더링 리소스 방지
+    //done이 바뀌었을 때만 렌더링을 다시합니다.
+    shouldComponentUpdate(nextProps, nextState) {
+        return this.props.done !== nextProps.done;
+    }
+
     render() {
         //비구조화 할당을 이용하여 this.props 안에 있는
         // done~onRemove 레퍼런스를 만들어 줍니다.
