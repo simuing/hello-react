@@ -1,68 +1,54 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# 리덕스의 세 가지 규칙
 
-## Available Scripts
+## 12.3.1 스토어는 단 한 개
+<div>
+    스토어는 언제나 단 한 개입니다. 스토어를 여러 개 생성해서 상태를 관리하면 안 됩니다. 그 대신 리듀서를 여러 개 만들어서 관리할 수 있습니다.
+</div>
 
-In the project directory, you can run:
 
-### `yarn start`
+## 12.3.2 state는 읽기 전용
+<div>
+    리덕스의 상태, state 값은 읽기 전용입니다. 이 값은 절대로 직접 수정하면 안됩니다. 그렇게 하면 리덕스의 구독 함수를 제대로 실행하지 않거나 컴포넌트의 리렌더링이 되지 않을 수 있습니다.
+</div>
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## 12.3.3 변화는 순수 함수로 구성
+<div>
+    모든 변화는 순수 함수로 구성해야 합니다. 여기에서 함수란 리듀서 함수를 가리킵니다. 순수 함수에서 결과 값을 출력할 때는 파라미터 값에만 의존해야 하며, 같은 파라미터는 언제나 같은 결과를 출력해야 합니다.
 
-### `yarn test`
+    리듀서 함수 내부에서는 현재 날짜를 반환하는 new Date()함수나 Math.random() 함수 등도 사용하면 안됩니다.
+</div>
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `yarn build`
+## 12.3.4 정리
+<div>
+    리덕스는 더욱 효율거으로 상태 관리를 할 수 있는 라이브러리입니다. 스토어에 상태 정보를 가진 객체를 넣어 두고, 액션이 디스패치되었을 때 리듀서 함수를 이용하여 상태를 변화시키는 것이 주요 역할입니다. 그리고 상태가 변화될 때마다 스토어에 구독된 함수를 실행시킵니다.
+</div>
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+# 13장 리덕스로 리엑트 애플리케이션 상태 관리
+## 13.1.1.1 작업 환경 설정
+$ yarn add redux react-redux
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 13.1.1.2 프로젝트 초기화
+<div>
+    <div>필요 없는 파일 제거 (아래 4개)</div>
+    <ul>
+        <li>App.css</li>
+        <li>App.js</li>
+        <li>App.test.js</li>
+        <li>logo.svg</li>
+    </ul>
+</div>
 
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+## 13.1.1.3 디렉터리 생성
+<div>
+    <div>src 디렉터리 내부 새 디렉터리 생성</div>
+    <ul>
+        <li>action: 액션 타입과 액션 생성자 파일 저장</li>
+        <li>components: 컴포넌트의 뷰가 어떻게 생길지 담당하는 프리젠테이셔널(presentational) 컴포넌트 저장</li>
+        <li>containers: 스토어에 있는 상태를 props로 받아 오는 컨테이너(container) 컴포넌트들을 저장</li>
+        <li>reducers: 스토어의 기본 상태 값과 상태의 업데이트를 담당하는 리듀서 파일 저장</li>
+        <li>lib: 일부 컴포넌트에서 함께 사용되는 파일 저장</li>
+    </ul>
+</div>
