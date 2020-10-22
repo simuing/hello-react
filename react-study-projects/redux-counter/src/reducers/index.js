@@ -1,4 +1,4 @@
-import * as types from '../action/ActionType';
+import * as types from '../actions/ActionType';
 
 // 초기 상태를 정의합니다.
 const initialState = {
