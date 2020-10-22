@@ -12,6 +12,10 @@ import { Provider } from 'react-redux'; //손쉽게 스토어를 연동할 수 �
 // 스토어 설정
 const store = createStore(reducers);
 
+// chrome 확장프로그램 redux DevTools 를 설치한 후 아래 코드로 작성하면 사용 가능하다.
+//https://github.com/zalmoxisus/redux-devtools-extension#usage
+// const store = createStore(reducers, window.devToolsExtension && window.devToolsExtension());
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
