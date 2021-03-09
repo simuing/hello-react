@@ -5,20 +5,20 @@ import * as counterActions from './modules/counter';
 import * as postActions from './modules/post';
 
 class App extends Component {
+    cancelRequest = null
+    handleCancel = () => {
+        if(this.cancelRequest) {
+            this.cancelRequest();
+            this.cancelRequest = null;
+        }
+    }
+
     loadData = async () => {
         const { PostActions, number } = this.props;
-        // PostActions.getPost(number).then(
-        //     (response) => {
-        //         console.log(response);
-        //     }
-        // ).catch(
-        //     (error) => {
-        //         console.log(error);
-        //     }
-        // );
-
         try {
-            const response = await PostActions.getPost(number);
+            const p = PostActions.getPost(number);
+            this.cancelRequest = p.cancel;
+            const response = await p;
             console.log(response);
         } catch(e) {
             console.log(e);
@@ -27,6 +27,11 @@ class App extends Component {
 
     componentDidMount() {
         this.loadData();
+        window.addEventListener('keyup', (e) => {
+            if(e.key === 'Escape') {
+                this.handleCancel();
+            }
+        })
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -55,8 +60,8 @@ class App extends Component {
                                 )
                         )
                 }
-                <button onClick={CounterActions.incrementAync}>+</button>
-                <button onClick={CounterActions.decrementAync}>-</button>
+                <button onClick={CounterActions.increment}>+</button>
+                <button onClick={CounterActions.decrement}>-</button>
             </div>
         );
     }
@@ -66,8 +71,8 @@ export default connect(
     (state) => ({
         number: state.counter,
         post: state.post.data,
-        loading: state.post.pending,
-        error: state.post.error
+        loading: state.pender.pending['GET_POST'],
+        error: state.pender.failure['GET_POST']
     }),
     (dispatch) => ({
         CounterActions: bindActionCreators(counterActions, dispatch),

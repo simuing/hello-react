@@ -1,25 +1,94 @@
 import { handleActions, createAction } from 'redux-actions';
-
+import { pender } from 'redux-pender';
 import axios from 'axios';
 
 function getPostAPI(postId) {
     return axios.get(`https://jsonplaceholder.typicode.com/posts/${postId}`)
 }
 
+// 15.2.4. redux-pender
 const GET_POST = 'GET_POST';
-const GET_POST_PENDING = 'GET_POST_PENDING';
-const GET_POST_SUCCESS = 'GET_POST_SUCCESS';
-const GET_POST_FAILURE = 'GET_POST_FAILURE';
+export const getPost = createAction(GET_POST, getPostAPI);
+const initialState = {
+    data: {
+        title: '',
+        body: ''
+    }
+}
+
+export default handleActions({
+    ...pender({
+        type: GET_POST,
+        onSuccess: (state, action) => {
+            const { title, body } = action.payload.data;
+            return {
+                data: {
+                    title,
+                    body
+                }
+            }
+        },
+        onCancel: (state, action) => {
+            return {
+                data: {
+                    title: '취소됨',
+                    body: '취소됨'
+                }
+            }
+        }
+    })
+}, initialState)
 
 // 15.2.3
 // redux-thunk 함수에서는 요청을 시작했을 때 pending을 날려주고 성공 또는 실패 액션을 디스패치해야 했지만
 // redux-promise-middleware를 사용하면 자동으로 이 작업을 하니 생략해도 좋다.
 // 해당 요청에 대해 관리해주어야 하는데 이를 위해서는 여전히 액션타입을 정의해야한다.
 // redex-pender를 사용하면 이런 반복적인 작업을 자동화할 수 있다.
+/*
+const GET_POST = 'GET_POST';
+const GET_POST_PENDING = 'GET_POST_PENDING';
+const GET_POST_SUCCESS = 'GET_POST_SUCCESS';
+const GET_POST_FAILURE = 'GET_POST_FAILURE';
 export const getPost = (postId) => ({
     type: GET_POST,
     payload: getPostAPI(postId)
 })
+const initialState = {
+    pending: false,
+    error: false,
+    data: {
+        title: '',
+        body: ''
+    }
+}
+export default handleActions({
+    [GET_POST_PENDING]: (state, action) => {
+        return {
+            ...state,
+            pending: true,
+            error: false
+        };
+    },
+    [GET_POST_SUCCESS]: (state, action) => {
+        const {title, body } = action.payload.data;
+
+        return {
+            ...state,
+            pending: false,
+            data: {
+                title,
+                body
+            }
+        };
+    },
+    [GET_POST_FAILURE]: (state, action) => {
+        return {
+            ...state,
+            pending: false,
+            error: true
+        }
+    }
+}, initialState)*/
 
 // 15.2.3
 //redux-thunk 함수에서는 요청하는 코드
@@ -49,8 +118,7 @@ export const getPost = (postId) => dispatch => {
         // 다시 한 번 catch를 할 수 있게 합니다.
         throw(error);
     })
-}*/
-
+}
 const initialState = {
     pending: false,
     error: false,
@@ -59,7 +127,6 @@ const initialState = {
         body: ''
     }
 }
-
 export default handleActions({
     [GET_POST_PENDING]: (state, action) => {
         return {
@@ -87,4 +154,7 @@ export default handleActions({
             error: true
         }
     }
-}, initialState)
+}, initialState)*/
+
+
+
