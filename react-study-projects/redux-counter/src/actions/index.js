@@ -2,16 +2,7 @@
    여기에서 () => ({})은 function() { return { } } 와 동일한 의미입니다.
 */
 
-import * as types from './ActionTypes';
-
-export const create = (color) => ({
-    type: types.CREATE,
-    color
-});
-
-export const remove = () => ({
-    type: types.REMOVE
-});
+import * as types from './ActionType';
 
 export const increment = () => ({
     type: types.INCREMENT
