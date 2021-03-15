@@ -5,18 +5,13 @@ import {
   About,
   Posts
 } from 'pages';
+// } from 'pages/index.async.js'; //라우트 코드 스플리팅
 import Menu from 'components/Menu';
-import AsyncSplitMe from 'components/AsyncSplitMe';
-
-import styles from './App.module.css'; 
-console.log(styles); 
 
 const App = () => {
   return (
     <div>
       <Menu/>
-      <AsyncSplitMe/>
-
       <Route path="/" component={Home}/>
       <Route path="/about/:name?" component={About}/>
       <Route path="/posts" component={Posts}/>
