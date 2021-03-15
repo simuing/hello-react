@@ -7,6 +7,9 @@ import {
 } from 'pages';
 import Menu from 'components/Menu';
 
+import styles from './App.module.css'; 
+console.log(styles); 
+
 const App = () => {
   return (
     <div>
