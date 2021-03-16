@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
   env: {
     browser: true,
@@ -7,6 +9,11 @@ module.exports = {
     'plugin:react/recommended',
     'airbnb',
   ],
+  settings: {
+    "import/resolver": {
+      node: { paths: [path.resolve('./src')] }
+    }
+  },
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
