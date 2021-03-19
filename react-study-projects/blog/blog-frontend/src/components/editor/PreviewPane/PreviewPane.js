@@ -4,12 +4,14 @@ import classNames from 'classnames/bind';
 
 const cx = classNames.bind(styles);
 
-const PreviewPane = () => (
-    <div className={cx('post-list')}>
-        <PostItem/>
-        <PostItem/>
-        <PostItem/>
-        <PostItem/>
+const PreviewPane = (markdown, title) => (
+    <div className={cx('preview-pane')}>
+        <h1 className={cx('title')}>
+            제목
+        </h1>
+        <div>
+            내용
+        </div>
     </div>
 );
 
