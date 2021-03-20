@@ -27,9 +27,9 @@ class EditorPaneContainer extends Component {
 
 export default connect(
     (state) => ({
-        title: state.editor.get('title'),
-        markdown: state.editor.get('markdown'),
-        tags: state.editor.get('tags')
+        title: state.get('title'),
+        markdown: state.get('markdown'),
+        tags: state.get('tags')
     }),
     (dispatch) => ({
         EditorActions: bindActionCreators(editorActions, dispatch)
