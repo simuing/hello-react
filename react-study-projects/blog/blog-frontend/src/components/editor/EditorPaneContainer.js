@@ -13,13 +13,13 @@ class EditorPaneContainer extends Component {
 
     render() {
         const { title, tags, markdown } = this.props;
-        const { handleChangeInput } = this.props
+        // const { handleChangeInput } = this.props
         return (
             <EditorPane
                 title={title}
                 markdown={markdown}
                 tags={tags}
-                onChangeInput={handleChangeInput}
+                onChangeInput={this.handleChangeInput}
             />
         );
     }
