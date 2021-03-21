@@ -6,7 +6,11 @@ import marked from 'marked';
 
 // prism 관련 코드 불러오기
 import Prism from 'prismjs';
-import 'prismjs'
+import 'prismjs/themes/prism-okaidia.css';
+import 'prismjs/components/prism-bash.min.js';
+import 'prismjs/components/prism-javascript.min.js';
+import 'prismjs/components/prism-jsx.min.js';
+import 'prismjs/components/prism-css.min.js';
 
 const cx = classNames.bind(styles);
 
@@ -43,6 +47,11 @@ class MarkdownRender extends Component {
         // markdown 값이 변경되면 renderMarkdown을 호출합니다.
         if(prevProps.markdown !== this.props.markdown) {
             this.renderMarkdown();
+        }
+
+        // state가 바뀌면 코드 하이라이팅
+        if(prevState.html !== this.state.html) {
+            Prism.highlightAll();
         }
     }
 

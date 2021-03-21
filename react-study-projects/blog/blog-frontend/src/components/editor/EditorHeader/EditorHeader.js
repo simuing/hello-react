@@ -5,7 +5,7 @@ import Button from 'components/common/Button';
 
 const cx = classNames.bind(styles);
 
-const EditorHeader = (onGoBack, onSubmit) => (
+const EditorHeader = ({onGoBack, onSubmit}) => (
     <div className={cx('editor-header')}>
         <div className={cx('black')}>
             <Button onClick={onGoBack} theme="outline">뒤로가기</Button>

@@ -1,67 +1,66 @@
 @import 'styles/utils';
 
-.post-info {
-    background: $oc-blue-6;
-    height: 24rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    .info {
-        margin-top: -5rem; // 헤더 크기만큼 위로
-        width: 1024px;
+.markdown-render {
+    blockquote {
+        border-left: 4px solid $oc-blue-6;
         padding: 1rem;
-        color: white;
-        h1 {
-            font-weight: 300;
-            font-size: 3rem;
+        background: $oc-gray-1;
+        margin-left: 0;
+        margin-right: 0;
+        p {
             margin: 0;
-            word-wrap: break-word; // 내용이 너무 길면 다음 줄에 작성
-        }
-        .tags {
-            margin-top: 1rem;
-            font-size: 1.25rem;
-            font-weight: 500;
-            a {
-                &:hover {
-                    text-decoration: underline;
-                }
-            }
-            a + a {
-                margin-left: 0.25rem; // 사이 여백
-            }
-        }
-        .date {
-            text-align: right;
-            opacity: 0.75;
-            font-style: italic;
-            font-size: 1.25rem;
         }
     }
 
-    @include media("<large") {
-        .info {
-            h1 {
-                font-size: 2rem;
-            }
-            .tags, .date {
-                font-size: 1rem;
-            }
-            width: 768px;
+    h1, h2, h3, h4 {
+        font-weight: 500;
+    }
+
+    // 텍스트 사이의 코드
+    h1, h2, h3, h4, h5, p {
+        code {
+            font-family: 'D2 Coding';
+            background: $oc-gray-0;
+            padding: 0.25rem;
+            color: $oc-blue-6;
+            border: 1px solid $oc-gray-2;
+            border-radius: 2px;
         }
     }
-    @include media("<medium") {
-        height: auto;
-        padding-bottom: 4rem;
 
-        .info {
-            padding-top: 0;
-            margin: 0;
-            .tags {
-                margin-top: 0.25rem;
-            }
-            .tags, .date {
-                font-size: 0.85rem;
-            }
+    // 코드 블록
+    code[class*="language-"], pre[class*="language-"] {
+        font-family: 'D2 Coding';
+    }
+
+    a {
+        color: $oc-blue-6;
+        &:hover {
+            color: $oc-blue-5;
+            text-decoration: underline;
         }
+    }
+
+    // 표 스타일
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    table, th, td {
+        border: 1px solid $oc-gray-4;
+    }
+
+    th, td {
+        font-size: 0.9rem;
+        padding: 0.25rem;
+        text-align: left;
+    }
+
+    // 이미지 최대 크기 설정 및 가운데 정렬
+    img {
+        max-width: 100%;
+        margin: 0 auto;
+        display: block;
     }
 }
