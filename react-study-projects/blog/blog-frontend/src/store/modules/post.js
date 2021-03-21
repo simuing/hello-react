@@ -9,10 +9,11 @@ import * as api from 'lib/api';
 
 // action types
 const GET_POST = 'post/GET_POST';
+const REMOVE_POST = 'post/REMOVE_POST';
 
 // action creators
 export const getPost = createAction(GET_POST, api.getPost);
-// export const getPost = createPenderAction(GET_POST, api.getPost);
+export const removePost = createAction(REMOVE_POST, api.removePost);
 
 //initial state
 const initialState = Map({

@@ -1,4 +1,5 @@
 import PageTemplate from 'components/common/PageTemplate';
+import AskRemoveModalContainer from 'containers/modal/AskRemoveModalContainer';
 import Post from 'containers/post/Post';
 import React from 'react';
 
@@ -14,6 +15,7 @@ const PostPage = ({match}) => {
         <Provider store={store}>
             <PageTemplate>
                 <Post id={id}/>
+                <AskRemoveModalContainer/>
             </PageTemplate>
         </Provider>
     );
