@@ -4,6 +4,10 @@ import classNames from 'classnames/bind';
 
 import marked from 'marked';
 
+// prism 관련 코드 불러오기
+import Prism from 'prismjs';
+import 'prismjs'
+
 const cx = classNames.bind(styles);
 
 class MarkdownRender extends Component {
@@ -31,8 +35,7 @@ class MarkdownRender extends Component {
         const { markdown } = props;
         // 서버사이드 렌더링에서도 마크다운 처리가 되도록 constructor 쪽에서도 구현합니다.
         this.state = {
-            html: 'd'
-            // html: markdown ? marked(props.markdown, { breaks: true, sanitize: true }) : ''
+            html: markdown ? marked(props.markdown, { breaks: true, sanitize: true }) : ''
         }
     }
 
