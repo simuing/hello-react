@@ -1,26 +1,24 @@
 import React from 'react';
 import EditorTemplate from 'components/editor/EditorTemplate';
 import EditorHeader from 'components/editor/EditorHeader';
-import EditorPaneContainer from 'components/editor/EditorPaneContainer';
-import PreviewPane from 'components/editor/PreviewPane';
+import EditorPaneContainer from 'containers/editor/EditorPaneContainer';
+import PreviewPaneContainer from 'containers/editor/PreviewPaneContainer';
 
-import reducers from 'store/modules/editor';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
+import reducers from 'store/modules/editor';
 const store = createStore(reducers);
 
 const EditorPage = () => {
     return (
-        <EditorTemplate
-            header={<EditorHeader/>}
-            editor={
-                <Provider store={store}>
-                    <EditorPaneContainer/>
-                </Provider>
-            }
-            preview={<PreviewPane/>}
-        />
+        <Provider store={store}>
+            <EditorTemplate
+                header={<EditorHeader/>}
+                editor={<EditorPaneContainer/>}
+                preview={<PreviewPaneContainer/>}
+            />
+        </Provider>
     );
 };
 
