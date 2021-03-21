@@ -20,11 +20,12 @@ const Joi = require('joi');
    { title, body, tags }
 */
 exports.write = async (ctx) => {
+    debugger;
     // 객체가 지닌 값들을 검증
     const schema = Joi.object().keys({
-        title: Joi.string().required(), // 뒤에 required를 붙여 주면 필수 항목이라는 의미
-        body: Joi.string().required(),
-        tags: Joi.array().items(Joi.string()).required() // 문자열 배열
+        title: Joi.string(), // 뒤에 .required()를 붙여 주면 필수 항목이라는 의미
+        body: Joi.string(),
+        tags: Joi.array().items(Joi.string()) // 문자열 배열
     });
 
     // 첫 번째 파라미터는 검증할 객체, 두 번째는 스키마
@@ -63,6 +64,11 @@ exports.list = async (ctx) => {
     // page가 주어지지 않았다면 1로 간주
     // query는 문자열 형태로 받아 오므로 숫자로 변환
     const page = parseInt(ctx.query.page || 1, 10);
+    const { tag } = ctx.query;
+
+    const query = tag ? {
+        tags: tag // tags 배열에 tag를 가진 포스트 찾기
+    } : {};
 
     // 잘못된 페이지가 주어졌다면 오류
     if(page < 1) {
