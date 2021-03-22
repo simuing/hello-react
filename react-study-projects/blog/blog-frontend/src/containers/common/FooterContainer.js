@@ -3,31 +3,26 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as baseActions from 'store/modules/base';
 import LoginModalContainer from 'containers/modal/LoginModalContainer';
+import Footer from 'components/common/footer';
 
-class Base extends Component {
-    initialize = async () => {
-        // 로그인 상태 확인(추후 작성)
+class FooterContainer extends Component {
+    handleLoginClick = async () => {
+        const { BaseActions } = this.props;
+        BaseActions.showModal('login');
     }
-
-    componentDidMount() {
-        this.initialize();
-    }
-
     render() {
+        const { handleLoginClick } = this;
         return (
-            <div>
-                <LoginModalContainer/>
-                {
-                    // 전역적으로 사용하는 컴포넌트들이 있다면 여기에서 렌더링합니다.
-                }
-            </div>
+            <Footer onLoginClick={handleLoginClick}/>
         )
     }
 }
 
 export default connect(
-    null,
+    (state) => ({
+        // 추후 입력
+    }),
     (dispatch) => ({
         BaseActions: bindActionCreators(baseActions, dispatch)
     })
-)(Base);
+)(FooterContainer);
