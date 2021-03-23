@@ -4,6 +4,11 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import App from 'components/App';
+import transit from 'transit-immutable-js';
+
+const preloadedState = window.__PRELOADED_STATE__ && transit.fromJSON(window.__PRELOADED_STATE__);
+
+const store = configure(preloadedState);
 
 const Root = () => {
     return (

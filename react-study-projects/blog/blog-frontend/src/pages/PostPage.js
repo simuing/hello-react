@@ -1,9 +1,10 @@
+import React from 'react';
 import PageTemplate from 'components/common/PageTemplate';
 import AskRemoveModalContainer from 'containers/modal/AskRemoveModalContainer';
 import Post from 'containers/post/Post';
-import React from 'react';
+import * as postActions from 'store/modules/post';
 
-import { createStore } from 'redux';
+import { bindActionCreators, createStore } from 'redux';
 import { Provider } from 'react-redux';
 
 import reducers from 'store/modules/post';
@@ -20,5 +21,11 @@ const PostPage = ({match}) => {
         </Provider>
     );
 };
+
+PostPage.preload = (dispatch, params) => {
+    const { id } = params;
+    const PostActions = bindActionCreators(postActions, dispatch);
+    return PostActions.getPost(id);
+}
 
 export default PostPage;

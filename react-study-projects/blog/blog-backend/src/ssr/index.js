@@ -1,7 +1,7 @@
 require('browser-env')();
 const render = require('./render').default;
 
-function buildHtml(rendered) {
+function buildHtml({html, preloadedState}) {
     return `
     <!DOCTYPE html>
     <html lang="en">
@@ -25,12 +25,20 @@ function buildHtml(rendered) {
     <body>
         <noscript>You need to enable JavaScript to run this app.</noscript>
         <div id="root"></div>
+        <script>
+            window.__PRELOADED_STATE__ = ${preloadedState}
+        </script>
     </body>
     </html>
     `;
 }
 
 module.exports = async (ctx) => {
-    const rendered = render(ctx);
-    ctx.body = rendered; // 임시 코드, 추후 구현 예정
+    try {
+        const rendered = await render(ctx);
+        ctx.body = buildHtml(rendered);
+    } catch (e) {
+        // 오류가 발생하면 일반 html 응답
+        ctx.body = buildHtml({});
+    }
 }

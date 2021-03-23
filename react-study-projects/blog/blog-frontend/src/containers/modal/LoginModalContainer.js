@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import LoginModal from 'components/modal/LoginModal';
+import LoginModal from 'components/modal/LoginModal/LoginModal';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as baseActions from 'store/modules/base';
 
 class LoginModalContainer extends Component {
-    handleLogin = () => {
+    handleLogin = async () => {
         const { BaseActions, password } = this.props;
         try {
             // 로그인 시도, 성공하면 모달 닫기
