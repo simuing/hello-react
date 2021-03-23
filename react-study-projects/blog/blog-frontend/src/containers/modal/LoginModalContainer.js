@@ -11,6 +11,7 @@ class LoginModalContainer extends Component {
             // 로그인 시도, 성공하면 모달 닫기
             await BaseActions.login(password);
             BaseActions.hideModal('login');
+            localStorage.logged = "true";
         } catch (e) {
             console.log(e);
         }

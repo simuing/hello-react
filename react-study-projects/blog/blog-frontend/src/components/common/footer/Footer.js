@@ -8,7 +8,9 @@ const cx = classNames.bind(styles);
 const Footer = ({onLoginClick}) => (
     <footer className={cx('footer')}>
         <Link to="/" className={cx('brand')}>reactblog</Link>
-        <div onClick={onLoginClick} className={cx('admin-login')}>관리자 로그인</div>
+        <div onClick={onLoginClick} className={cx('admin-login')}>
+            {logged ? '로그아웃' : '관리자 로그인'}
+        </div>
     </footer>
 );
 

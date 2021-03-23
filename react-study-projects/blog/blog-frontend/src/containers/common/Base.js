@@ -6,7 +6,12 @@ import LoginModalContainer from 'containers/modal/LoginModalContainer';
 
 class Base extends Component {
     initialize = async () => {
-        // 로그인 상태 확인(추후 작성)
+        const { BaseActions } = this.props;
+        //localStorage에 로그인 상태를 저장하여 이 상태가 존재한다면 로그인 중인 것으로 간주합니다.
+        if(localStorage.logged === "true") {
+            BaseActions.tempLogin(); 
+        }
+        BaseActions.checkLogin();
     }
 
     componentDidMount() {
