@@ -194,6 +194,16 @@ module.exports = function (webpackEnv) {
             // changing JS code would still trigger a refresh.
           ]
         : paths.appIndexJs,
+        vendor: [
+          require.resolve('./polyfills'),
+          'react',
+          'react-dom',
+          'react-router-dom',
+          'redux',
+          'axios',
+          'codemirror',
+          'prismjs'
+        ],
     output: {
       // The build folder.
       path: isEnvProduction ? paths.appBuild : undefined,

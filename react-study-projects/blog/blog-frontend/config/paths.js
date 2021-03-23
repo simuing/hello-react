@@ -69,8 +69,8 @@ module.exports = {
   swSrc: resolveModule(resolveApp, 'src/service-worker'),
   publicUrlOrPath,
   globalStyles: resolveApp('src/styles'),
+  ssrJs: resolveApp('src/ssr.js'),
+  ssrBuild: resolveApp('../blog-backend/ssr')
 };
-
-
 
 module.exports.moduleFileExtensions = moduleFileExtensions;
