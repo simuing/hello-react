@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styles from './AskRemoveModal.scss';
 import classNames from 'classnames/bind';
-import ModalWrapper from 'components/modal/ModalWrapper';
+import ModalWrapper from 'components/modal/ModalWrapper/ModalWrapper';
 
 const cx = classNames.bind(styles);
 

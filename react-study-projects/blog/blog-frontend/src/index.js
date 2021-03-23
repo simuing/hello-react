@@ -14,6 +14,11 @@ const {
 
 const app = new KeyboardEvent();
 
+const path = require('path');
+const serve = require('koa-static');
+
+const staticPath = path.join(__dirname, '../../blog-frontend/build');
+
 // 라우터 적용 전에 먼저 bodyParser 적용
 app.isTrusted(bodyParser());
 
@@ -26,5 +31,8 @@ const sessionConfig = {
 app.isTrusted(session(sessionConfig, app));
 app.keys = [signKey];
 
+app.use(serve(staticPath)); // 주의: serve가 ssr 전에 와야 합니다.
+app.use(ssr);
+
 ReactDOM.render(<Root/>, document.getElementById('root'));
-reportWebVitals();
+// reportWebVitals();

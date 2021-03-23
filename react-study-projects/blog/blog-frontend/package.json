@@ -46,6 +46,7 @@
     "jest-resolve": "26.6.0",
     "jest-watch-typeahead": "0.6.1",
     "koa-session": "^6.1.0",
+    "koa-static": "^5.0.0",
     "marked": "^2.0.1",
     "mini-css-extract-plugin": "0.11.3",
     "moment": "^2.29.1",
@@ -89,6 +90,7 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
+    "build:server": "node scripts/build.server.js",
     "test": "node scripts/test.js"
   },
   "eslintConfig": {
