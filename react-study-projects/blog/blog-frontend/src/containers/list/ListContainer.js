@@ -4,6 +4,7 @@ import Pagination from 'components/list/Pagination';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as listActions from 'store/modules/list';
+import shouldCancel from 'lib/shouldCancel';
 
 class ListContainer extends Component {
     componentDidMount() {
@@ -20,6 +21,8 @@ class ListContainer extends Component {
     }
 
     async fetchData() {
+        if(shouldCancel()) return;
+        //페이지와 태그 값을 부모에게서 받아 옵니다.
         const { tag, page, ListActions } = this.props;
         try {
             await ListActions.getPostList({

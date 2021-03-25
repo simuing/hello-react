@@ -4,6 +4,7 @@ import PostInfo from 'components/post/PostInfo';
 import * as postActions from 'store/modules/post';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import shouldCancel from 'lib/shouldCancel';
 
 class Post extends Component {
     componentDidMount() {
@@ -12,6 +13,7 @@ class Post extends Component {
 
     async fetchData() {
         const { PostActions } = this.props;
+        if(shouldCancel()) return;
         try {
             await PostActions.getPost(1);
             console.log('data is fetched!');
