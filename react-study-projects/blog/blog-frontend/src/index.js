@@ -7,6 +7,13 @@ import routes from './routes';
 import { matchPath } from 'react-router';
 import 'styles/base.scss';
 
+const render = async () => {
+    if(process.env.NODE_ENV === 'development') {
+        // 개발 모드에서는 바로 렌더링을 합니다.
+        return ReactDOM.render(<Root />, document.getElementById('root'));
+    }
+}
+
 const session = require('koa-session');
 
 const {
