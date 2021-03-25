@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import Root from './Root';
 import reportWebVitals from './reportWebVitals';
 import 'styles/base.scss';
+import routes from './routes';
+import { matchPath } from 'react-router';
+import 'styles/base.scss';
 
 const session = require('koa-session');
 
