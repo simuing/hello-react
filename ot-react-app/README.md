@@ -1,7 +1,6 @@
 
 ## 프로젝트 설명
-생활코딩 - React 를 따라 보고 작성한 공부기록  
-[생활코딩 React 바로가기](https://opentutorials.org/module/4058)  
+[생활코딩 React](https://opentutorials.org/module/4058)  를 따라 보고 작성한 공부기록  
   
   
   
