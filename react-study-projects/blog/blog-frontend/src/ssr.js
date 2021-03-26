@@ -6,6 +6,7 @@ import configure from 'store/configure';
 import routes from './routes';
 import axios from 'axios';
 import transit from 'transit-immutable-js';
+import Helmet from 'react-helmet';
 
 import App from 'components/App';
 
@@ -63,9 +64,14 @@ const render = (ctx) => {
         ctx.status = 404; // HTTP 상태를 404로 설정해 줍니다.
     }
 
+    // renderStatic은 한번 렌더링 작업을 완료한 후 실행해야 합니다.
+    // Helmet 사용과 서버사이드 렌더링을 함께할 때 이 작업은 필수입니다.
+    // 이 작업을 생략하면 메모리 누수 현상이 발생합니다.
+    const helmet = Helmet.renderStatic();
+
     const preloadedState = JSON.stringify(transit.toJSON(store.getState())).replace(/</g, '\\u003c');
 
-    return { html, preloadedState };
+    return { html, preloadedState, helmet };
 }
 
 export default render;

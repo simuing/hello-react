@@ -5,6 +5,8 @@ import * as postActions from 'store/modules/post';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import shouldCancel from 'lib/shouldCancel';
+import removeMD from 'remove-markdown';
+import { Helmet } from 'react-helmet';
 
 class Post extends Component {
     componentDidMount() {
@@ -31,6 +33,13 @@ class Post extends Component {
 
         return (
             <div>
+                {/* body 값이 있을 때만 Helmet 설정 (포스트 제목과 내용을 head 정보에 넣는다.)*/ 
+                body && (
+                    <Helmet>
+                        <title>{title}</title>
+                        <meta name="description" content={removeMD(body).slice(0,200)}/>
+                    </Helmet>
+                )}
                 { loading && 'Loading...' }
                 <div>
                     <PostInfo title={title} publishedDate={publishedDate} tags={tags} />
