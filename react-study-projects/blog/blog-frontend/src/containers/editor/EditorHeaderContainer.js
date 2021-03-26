@@ -14,7 +14,7 @@ class EditorHeaderContainer extends Component {
         EditorActions.initialize(); // 에디터를 초기화합니다.
 
         // 쿼리 파싱
-        const { id } = queryString.parse(location.search);
+        const { id } = queryString.parse(this.props.location.search);
         if(id) {
             // id가 존쟇면 포스트 불러오기
             EditorActions.getPost(id);
@@ -35,7 +35,7 @@ class EditorHeaderContainer extends Component {
             tags: tags === "" ? [] : [...new Set(tags.split(',').map(tag => tag.trim()))]
         };
         try {
-            const { id } = queryString.parse(location.search);
+            const { id } = queryString.parse(this.props.location.search);
             if(id) {
                 await EditorActions.editPost({id, ...post});
                 history.push(`/post/${id}`);

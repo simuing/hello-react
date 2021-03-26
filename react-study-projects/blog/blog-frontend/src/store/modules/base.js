@@ -3,6 +3,8 @@ import { createAction, handleActions } from 'redux-actions';
 import { Map } from 'immutable';
 import { pender } from 'redux-pender';
 
+import * as api from 'lib/api';
+
 // action types
 const SHOW_MODAL = 'base/SHOW_MODAL';
 const HIDE_MODAL = 'base/HIDE_MODAL';
@@ -21,8 +23,8 @@ export const hideModal = createAction(HIDE_MODAL);
 export const login = createAction(LOGIN, api.login);
 export const logout = createAction(LOGOUT, api.logout);
 export const checkLogin = createAction(CHECK_LOGIN, api.checkLogin);
-export const changePasswordInput = createAction(CHANGE_PASSWORD_INPUT, api.changePasswordInput);
-export const initializeLoginModal = createAction(INITIALIZE_LOGIN_MODAL, api.initializeLoginModal);
+export const changePasswordInput = createAction(CHANGE_PASSWORD_INPUT);
+export const initializeLoginModal = createAction(INITIALIZE_LOGIN_MODAL);
 export const tempLogin = createAction(TEMP_LOGIN);
 
 //initial state
@@ -57,7 +59,7 @@ export default handleActions({
             return state.set('logged', true)
         },
         onError: (state, action) => {
-            return stete.setIn(['loginModal', 'error'], true)
+            return state.setIn(['loginModal', 'error'], true)
                         .setIn(['loginModal', 'password'], '')
         }
     }),
@@ -70,11 +72,11 @@ export default handleActions({
     }),
     [CHANGE_PASSWORD_INPUT]: (state, action) => {
         const { payload: value } = action;
-        return stete.setIn('loginModal', initialState.get('loginModal'));
+        return state.setIn('loginModal', initialState.get('loginModal'));
     },
     [INITIALIZE_LOGIN_MODAL]: (state, action) => {
         // 로그인 모달의 상태를 초기 상태로 설정(텍스트/오류 초기화)
-        return stete.setIn('loginModal', initialState.get('loginModal'));
+        return state.setIn('loginModal', initialState.get('loginModal'));
     },
     [TEMP_LOGIN]: (state, action) => {
         return state.set('logged', true);

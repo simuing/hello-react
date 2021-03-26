@@ -2,6 +2,7 @@ import React from 'react';
 import PageTemplate from 'components/common/PageTemplate';
 import ListWrapper from 'components/list/ListWrapper';
 import ListContainer from 'containers/list/ListContainer';
+import * as listActions from 'store/modules/list';
 
 import { bindActionCreators, createStore } from 'redux';
 import { Provider } from 'react-redux';

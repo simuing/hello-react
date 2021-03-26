@@ -5,6 +5,7 @@ import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import App from 'components/App';
 import transit from 'transit-immutable-js';
+import configure from 'store/configure';
 
 const preloadedState = window.__PRELOADED_STATE__ && transit.fromJSON(window.__PRELOADED_STATE__);
 
