@@ -1,13 +1,13 @@
 ## hello-react
 react.js 공부 기록을 남기는 Repository 입니다.
 
-<hr/>
+
 
 ### Book study
 #### react-study-projects
 길벗 『리액트를 다루는 기술(2018)』 공부 기록
 
-<hr/>
+
 
 ### Online lecture
 #### react-class-vs-function
