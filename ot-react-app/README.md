@@ -20,3 +20,17 @@ npx는 앱 프로그램을 임시로 설치하여 일회성으로 사용하고 �
 현재 경로를 프로젝트 경로로 지정하여 create-react-app을 설치한다.
 
 
+#### React - 9. 배포하는 법
+
+##### build
+>$ npm run build
+
+배포용 프로덕션 모드로 빌드한다.
+
+##### serve
+>$ npm install -g serve
+
+serve를 전역으로 설치하면 serve 명령어로 서버를 실행시킬 수 있다.
+
+>$ npx serve -s build
+-s의 의미는 build라는 디렉토리를 다큐먼트 루트로 하겠다는 뜻이다.
