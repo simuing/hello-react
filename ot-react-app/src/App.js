@@ -1,21 +1,16 @@
 import { Component } from 'react';
 import './App.css';
+import Subject from './components/Subject';
+import TOC from './components/TOC';
+import Content from './components/Content';
 
-// 함수형 
-// function App() {
-//   return (
-//     <div className="App">
-//       Hi React
-//     </div>
-//   );
-// }
-
-// 클래스형
 class App extends Component {
   render() {
     return (
       <div className="App">
-        Hi React
+        <Subject title="WEB" sub="world wide web!"></Subject>
+        <TOC></TOC>
+        <Content title="HTML" desc="HTML is HyperText Markup Language."></Content>
       </div>
     )
   }
