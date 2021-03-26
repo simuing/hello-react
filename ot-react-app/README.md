@@ -1,8 +1,7 @@
 
 ## 프로젝트 설명
 생활코딩 - React 를 따라 보고 작성한 공부기록
-- <a href="https://opentutorials.org/module/4058">생활코딩 React 바로가기</a>
-  
+- [생활코딩 React 바로가기](https://opentutorials.org/module/4058)
   
 #### React - 5. create react app을 이용해서 개발환경구축
 
