@@ -1,7 +1,8 @@
 require('browser-env')();
 const render = require('./render').default;
 
-function buildHtml({html, preloadedState}) {
+function buildHtml({html, helmet, preloadedState}) {
+    const { title, meta } = helmet;
     return `
     <!DOCTYPE html>
     <html lang="en">
@@ -10,21 +11,13 @@ function buildHtml({html, preloadedState}) {
         <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#000000" />
-        <meta
-        name="description"
-        content="Web site created using create-react-app"
-        />
-        <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-        <!--
-        manifest.json provides metadata used when your web app is installed on a
-        user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-        -->
         <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-        <title>React App</title>
+        ${title.toString()}
+        ${meta.toString()}
     </head>
     <body>
         <noscript>You need to enable JavaScript to run this app.</noscript>
-        <div id="root"></div>
+        <div id="root">${html}</div>
         <script>
             window.__PRELOADED_STATE__ = ${preloadedState}
         </script>
