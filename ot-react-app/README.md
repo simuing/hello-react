@@ -1,8 +1,13 @@
 
 ## 프로젝트 설명
 [생활코딩 React](https://opentutorials.org/module/4058)  를 따라 보고 작성한 공부기록입니다.
+
 <br/>
 <br/>
+
+
+
+
 #### React - 5. create react app을 이용해서 개발환경구축
 
 ##### npm 과 npx 의 차이
@@ -16,8 +21,13 @@ npm이 Node계 앱스토어에 있는 프로그램을 설치하는 개념이라�
 >$ create-react-app .
 
 현재 경로를 프로젝트 경로로 지정하여 create-react-app을 설치한다.
+
 <br/>
 <br/>
+
+
+
+
 #### React - 9. 배포하는 법
 
 ##### build
@@ -32,3 +42,14 @@ serve를 전역으로 설치하면 serve 명령어로 서버를 실행시킬 수
 
 >$ npx serve -s build
 -s의 의미는 build라는 디렉토리를 다큐먼트 루트로 하겠다는 뜻이다.
+
+<br/>
+<br/>
+
+
+
+
+#### React - 15.3. key
+1. 부모 컴포넌트가 자식 컴포넌트에 state 정보 전달
+2. 자식 컴포넌트 state 정보 출력
+3. 동적 리스트 출력 시 key 지정 필요
