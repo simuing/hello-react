@@ -1,6 +1,15 @@
 > React 공부 기록을 남기는 Repository 입니다.
 
-<br/><br/>  
+<br/>  
+
+### INDEX
+- react-study-projects  
+- ot-react-app  
+- react-class-vs-function  
+
+<br/>
+
+***
 
 ### Book study
 #### react-study-projects
@@ -9,7 +18,7 @@
 <br/>  
 
 ### Online lecture study
-#### react-class-vs-function
+#### ot-react-app
 생활코딩 『<a target="_blank" href="https://opentutorials.org/module/4058">생활코딩 React</a>』 공부 기록입니다.
 
 #### react-class-vs-function
