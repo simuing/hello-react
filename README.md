@@ -1,15 +1,6 @@
-> React 공부 기록을 남기는 Repository 입니다.
-
-<br/>  
-
-### INDEX
-- react-study-projects  
-- ot-react-app  
-- react-class-vs-function  
+## React 공부 기록을 남기는 Repository 입니다.
 
 <br/>
-
-***
 
 ### Book study
 #### react-study-projects
