@@ -5,6 +5,7 @@ import TOC from './components/TOC';
 import ReadContent from './components/ReadContent';
 import Control from './components/Control';
 import CreateContent from './components/CreateContent';
+import UpdateContent from './components/UpdateContent';
 
 class App extends Component {
   constructor(props) {
@@ -23,25 +24,30 @@ class App extends Component {
       ]
     }
   }
-  render() {
-    console.log('App render');
+
+  getReadContent(){
+    let i = 0;
+    while(i < this.state.contents.length) {
+      let data = this.state.contents[i];
+      if(data.id === this.state.selected_content_id) {
+        return data;
+      }
+      i = i + 1;
+    }
+  }
+
+  getContent(){
     let _title, _desc, _article = null;
+
     if(this.state.mode === 'welcome') {
       _title = this.state.welcome.title;
       _desc = this.state.welcome.desc;
       _article = <ReadContent title={_title} desc={_desc}></ReadContent>
+
     } else if(this.state.mode === 'read') {
-      let i = 0;
-      while(i < this.state.contents.length) {
-        let data = this.state.contents[i];
-        if(data.id === this.state.selected_content_id) {
-          _title = data.title;
-          _desc = data.desc;
-          _article = <ReadContent title={_title} desc={_desc}></ReadContent>
-          break;
-        }
-        i = i + 1;
-      }
+      let _content = this.getReadContent();
+      _article = <ReadContent title={_content.title} desc={_content.desc}></ReadContent>
+
     } else if(this.state.mode === 'create') {
       _article = <CreateContent onSubmit={(_title, _desc)=>{
         this.max_content_id = this.max_content_id+1;
@@ -61,11 +67,30 @@ class App extends Component {
         this.setState({
           contents: _contents
         });
-
       }}></CreateContent>
+
     } else if(this.state.mode === 'update') {
-      
+      let _content = this.getReadContent();
+      _article = <UpdateContent data={_content} onSubmit={(_id, _title, _desc)=>{
+        let _contents = Array.from(this.state.contents); //data copy
+        let i = 0;
+        while(i < _contents.length) {
+          if(_contents[i].id === _id) {
+            _contents[i] = {id: _id, title: _title, desc: _desc};
+            break;
+          }
+          i = i + 1;
+        }
+        this.setState({
+          contents: _contents
+        })
+      }}></UpdateContent>
     }
+    return _article;
+  }
+
+  render() {
+    console.log('App render');
     return (
       <div className="App">
         <Subject 
@@ -93,7 +118,7 @@ class App extends Component {
             mode: _mode
           })
         }}></Control>
-        {_article}
+        {this.getContent()}
       </div>
     )
   }
