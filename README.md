@@ -1,7 +1,5 @@
 ## React 공부 기록을 남기는 Repository 입니다.
 
-<br/>
-
 ### Book study
 #### react-study-projects
 길벗 『리액트를 다루는 기술』 공부 기록입니다.
