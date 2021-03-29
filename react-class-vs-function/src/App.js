@@ -2,11 +2,21 @@ import React, { Component, useState, useEffect } from 'react';
 import './App.css';
 
 function App() {
+  let [funcShow, setFuncShow] = useState(true);
+  let [classShow, setClassShow] = useState(true);
   return (
     <div className="container">
       <h1>Hello World</h1>
-      <FuncComp initNumber={2}></FuncComp>
-      <ClassComp initNumber={2}></ClassComp>
+
+      <input type="button" value="remove func" onClick={()=>{
+        setFuncShow(false);
+      }}></input>
+      <input type="button" value="remove comp" onClick={()=>{
+        setClassShow(false);
+      }}></input>
+
+      {funcShow ? <FuncComp initNumber={2}></FuncComp> : null}
+      {classShow ? <ClassComp initNumber={2}></ClassComp> : null}
     </div>
   );
 }
@@ -16,7 +26,7 @@ function App() {
 // 간단한 표현식에 사용했었지만, hook(useState, useEffect,...)에 의해 다양한 표현식에 사용이 가능해졌다.
 // React.useState로 state를 사용할 수 있다.
 // React.useEffect로 
-let funcStyle = 'color:yellow';
+let funcStyle = 'color:skyblue';
 let funcId = 0;
 function FuncComp(props) {
   // (1) 인자로 출력하는 방식
@@ -31,14 +41,36 @@ function FuncComp(props) {
   // 간단하게 선언된 date state 정보
   let [_date, setDate] = useState((new Date()).toString());
   
-  //side effect
+  // side effect 함수이다.
+  // 
   useEffect(()=>{
-    console.log('%cclass => useEffect'+(++funcId), funcStyle);
+    console.log('%cfunc => useEffect'+(++funcId), funcStyle);
     document.title = number + ' : ' + _date; //useEffect 예시
+    return function() {
+      console.log('%cfunc => useEffect return'+(++funcId), funcStyle);
+    }
   });
+
+  // 감시 대상을 넘기면 원하는 이벤트를 감시할 수 있다.
+  useEffect(()=>{
+    console.log('%cfunc => useEffect number'+(++funcId), funcStyle);
+    document.title = number; //useEffect 예시
+  }, [number]);
+
+  useEffect(()=>{
+    console.log('%cfunc => useEffect _date'+(++funcId), funcStyle);
+    document.title = _date; //useEffect 예시
+  }, [_date]);
+
+  // 두 번째 인자를 빈 배열로 넘기면 초기에만 실행하고 이후에는 실행하지 않는다.
+  // componentDidMount로 사용할 수 있다.
+  useEffect(()=>{
+    console.log('%cfunc => useEffect componentDidMount'+(++funcId), funcStyle);
+    document.title = _date; //useEffect 예시
+  }, []);
   
   // debugger;
-  console.log('%cclass => render'+(++funcId), funcStyle);
+  console.log('%cfunc => render'+(++funcId), funcStyle);
   return (
     <div className="container">
       <h2>function style component</h2>
@@ -79,7 +111,10 @@ class ClassComp extends Component {
   componentDidMount() {
     console.log('%cclass => componentDidMount', 'color:red');
   }
-
+  
+  componentWillUnmount() {
+    console.log('%cclass => componentWillUnmount', 'color:red');
+  }
   render() {
     console.log('%cclass => render', 'color:red');
     return (
