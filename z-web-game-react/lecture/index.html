@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+        <script crossorigin src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    </head>
+    <body>
+        <div id="root"></div> <!-- <div id="root"><button>Like</button></div> -->
+        <script type="text/babel">
+            // const e = React.createElement;
+            class LikeButton extends React.Component {
+                constructor(props) {
+                    super(props);
+                    this.state = {
+                        liked: false,
+                    }
+                }
+
+                render() {
+                    /* 원시적인 방법으로 작성된 코드
+                    return e(  //이런 태그를 만들겠다는 의미
+                        'button', 
+                        { onClick: () => { this.setState({liked: true})}, type: 'submit' }, 
+                        this.state.liked === true ? 'Liked' : 'Like',
+                    );*/
+
+                    // JSX를 이용한 코드 (JS + XML)
+                    return (
+                        <button type="submit" onClick={ () => { this.setState({liked: true})}}>
+                            {this.state.liked === true ? 'Liked' : 'Like'}
+                        </button>
+                    )
+                    
+                }
+            }
+        </script>
+
+        <script type="text/babel">
+            /*원시적인 방법으로 작성된 코드
+            ReactDOM.render(e(LikeButton), document.querySelector('#root'));*/
+            
+            //JSX를 사용한 코드 (html에서 사용할 경우 type text/bebel 필요)
+            ReactDOM.render(<div><LikeButton /><LikeButton /></div>, document.querySelector('#root'));
+        </script>
+    </body>
+</html>
