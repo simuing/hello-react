@@ -13,6 +13,8 @@
         </style>
     
         <div id="red"></div>
+        <div id="blue"></div>
+        <div id="green"></div>
     
         <script>
             // 리액트에서 리듀서란
@@ -29,7 +31,7 @@
                     // state.color = 'red'; 
 
                     // 좋은 방법 - 새로운 state값을 복제하여 return한다.
-                    newState = Object.assign({}, state, {color: 'red'});
+                    newState = Object.assign({}, state, {color: action.color});
                     return newState;
                 }
                 return state;
@@ -50,7 +52,36 @@
                 </div>
                 `;
             }
+            store.subscribe(red); //red를 구독하여 state 변화에 따라 render 실행
             red();
+
+            function blue() {
+                let state = store.getState();
+                document.querySelector('#blue').innerHTML =  `
+                <div class="container" id="component_blue" style="background-color:${state.color}">
+                    <h1>blue</h1>
+                    <input type="button" value="fire" onclick="
+                        store.dispatch({type: 'CHANGE_COLOR', color: 'blue'});
+                    ">
+                </div>
+                `;
+            }
+            store.subscribe(blue); //blue를 구독하여 state 변화에 따라 render 실행
+            blue();
+
+            function green() {
+                let state = store.getState();
+                document.querySelector('#green').innerHTML =  `
+                <div class="container" id="component_green" style="background-color:${state.color}">
+                    <h1>green</h1>
+                    <input type="button" value="fire" onclick="
+                        store.dispatch({type: 'CHANGE_COLOR', color: 'green'});
+                    ">
+                </div>
+                `;
+            }
+            store.subscribe(green); //green를 구독하여 state 변화에 따라 render 실행
+            green();
         </script>
     </body>
 </html>
