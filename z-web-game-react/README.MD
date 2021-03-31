@@ -4,8 +4,8 @@
 - 생략해서 쓰는 경우 this.state가 아닌 state로 선언한다.
 
 
-> constructor 사용 예시
-''' javascript
+> constructor 사용 예시  
+``` javascript
 class GuGuDan extends React.Component {
     constructor(props) {
         super(props);
@@ -18,10 +18,10 @@ class GuGuDan extends React.Component {
     }
     (...)
 }
-'''
+```
 
-> 생략 예시
-''' javascript
+> 생략 예시  
+``` javascript
 class GuGuDan extends React.Component {
     state = {
         first: Math.ceil(Math.random() * 9),
@@ -31,26 +31,23 @@ class GuGuDan extends React.Component {
     }
     (...)
 }
-'''
+```
 
 
 - 함수를 onSubmit과 같이 빼서 쓸 경우 화살표 함수로만 작성해야한다. function을 넣을 경우 this가 달라져버리기 때문이다. 
 - render()는 화살표 함수를 쓰지 않아도 된다.
 
-''' javascript
+``` javascript
 onSubmit = (e) => {
     e.preventDefault();
     (...)
 }
-'''
+```
 
-- <></> 태그로 감싸면 root하위로 엘리먼트를 바로 붙일 수 있다.
+- <></> 태그로 감싸면 태그에 감싸지 않고 엘리먼트를 바로 붙일 수 있다.
 - 바벨...일 경우 <React.Fragment>로 감싸면 같은 효과를 볼 수 있다.
 
-''' javascript
-(...)
-<div id="root"></div>
-(...)
+``` javascript
 render() {
     return (
         <React.Fragment>
@@ -66,4 +63,4 @@ render() {
     )
 }
 (...)
-'''
+```
