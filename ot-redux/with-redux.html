@@ -36,7 +36,10 @@
                 }
                 return state;
             }
-            let store = Redux.createStore(reducer);
+            let store = Redux.createStore(
+                reducer,
+                window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+            );
             console.log(store.getState());
             
             // store.dispatch는 reducer함수를 호출하도록 약속 되어 있다.
