@@ -80,7 +80,6 @@ render() {
 - document.querySelect('input')과 동일한 효과이다.
 > ref 사용예시
 ``` javascript
-
 onSubmit = (e) => {
     e.preventDefault();
     (...)
@@ -97,6 +96,72 @@ render() {
     )
 }
 ```
+<br/>
+
+- 클래스형과 함수형의 state 선언 차이
+- 클래스형
+    - 클래스형은 한번에 선언하는 것이 좋다.
+- 함수형
+    - 리액트 Hooks로 한 컴포넌트 안에 하나하나 따로 선언하는 것이 좋다.
+    - 비구조화 할당 방식을 활용하면 간단하게 선언할 수 있다.
+    - state 초기 값은 React.useState([초기값])으로 설정한다.
+
+> 클래스형 state 선언 예시
+``` javascript
+state = {
+    first: Math.ceil(Math.random() * 9),
+    second: Math.ceil(Math.random() * 9),
+    value: '',
+    result: '',
+}
+```
+
+> 함수형 state 선언 예시
+``` javascript
+const GuGuDan = () => {
+    const [first, setFirst] = React.useState(Math.ceil(Math.random()));
+    const [second, setSecond] = React.useState(Math.ceil(Math.random()));
+    const [value, setValue] = React.useState('');
+    const [result, setResult] = React.useState('');
+}
+```
+<br/>
+
+
+- 클래스형과 함수형의 ref 사용 차이
+> 클래스형에서의 ref 사용 예시
+``` javascript
+input; //ref가 바라보는 변수
+onRefInput = (c) => {this.input = c; };
+render() {
+    return (
+        <React.Fragment>
+            <input ref={this.onRefInput} type="number" />
+        </React.Fragment>
+    )
+}
+```
+``` javascript
+this.input.focus(); //dom에 접근
+```
+
+>함수형에서의 ref 사용 예시
+``` javascript
+const inputRef = React.useRef(null); //ref가 바라보는 변수
+render() {
+    return (
+        <React.Fragment>
+            <input ref={inputRef} type="number" />
+        </React.Fragment>
+    )
+}
+```
+``` javascript
+inputRef.current.focus(); //dom에 접근할 때는 current를 붙이고 사용해야한다.
+```
+<br/>
+
+
 
 
 
