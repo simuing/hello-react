@@ -311,6 +311,19 @@ const Test = () => {
 ```
 <br/>
 
+#### 클래스형 라이프 사이클 간단 정리
+- 컴포넌트 생성 -> constructor -> render -> ref -> componentDidMount -> (setState/props 바뀔때 -> shouldComponentUpdate(true) -> render -> componentDidUpdate)
+- 부모가 나를 없앨 때 -> componentWillUnmount -> 소멸
+
+#### componentWillUnmount()를 활용하여 메모리 누수 방지
+- setInterval와 setTimeout를 사용한 경우 컴포넌트가 제거되기 직전에 실행되는 함수인 componentWillUnmount()를 활용하여 clear 해주기!
+```javascript
+componentWillUnmount() {
+    clearInterval(this.interval); 
+}
+```
+<br/>
+
 
 
 <br/>
