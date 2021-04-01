@@ -59,22 +59,34 @@ class ResponseCheck extends Component {
             >
                 {message}
             </div>
+            {/* ************ 조건문 표현방식 예제 ************ */}
 
-            {/* 삼항연산자로 조건문 표현 */}
+            {/* (1) 삼항연산자로 조건문 표현 */}
             {
                 result.length === 0 
                 ? null 
                 : <div>평균 시간: {result.reduce((a, c)=> a + c)/result.length}ms</div>
             }
 
-            {/* 조건연산자로 조건문 표현 */}
+            {/* (2) 조건연산자로 조건문 표현 */}
             {
                 result.length === 0 
                 && <div>평균 시간: {result.reduce((a, c)=> a + c)/result.length}ms</div>
             }
 
-            {/* 조건문 함수로 표현 */}
+            {/* (3) 조건문 함수로 표현 */}
             {this.renderAverage()}
+
+            {/* (4) 즉시실행 함수로 표현 */}
+            {(() => {
+                if (result.length === 0) {
+                    return null;
+                } else {
+                    return <>
+                        <div>평균 시간: {result.reduce((a, c)=> a + c)/result.length}ms</div>
+                    </>
+                }
+            })}
             
         </>
     }

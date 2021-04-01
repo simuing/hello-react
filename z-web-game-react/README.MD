@@ -233,4 +233,84 @@ onInputRef = (c) => {
 }
 ```
 <br/>
+
+#### Hooks에서의 ref
+- useRef()로 선언하면 데이터가 변경되어도 return 부분이 재실행 되지 않는다.
+- (state는 바뀌면 리랜더링된다.)
+- 클래스형에선 this에 정의되었던 변수를 useRef로 정의한다.
+> class component에서의 변수 정의 예시
+```javascript
+class Test extends Component {
+    startTime;
+    (...)
+    testFunc = () => {
+        this.startTime = new Date();
+    }
+}
+```
+> Hooks ref 변수 정의 예시
+```javascript
+const Test = () => {
+    const startTime = useRef(null);
+    (...)
+    testFunc = () => {
+        startTime.current = new Date(); //useRef는 current를 쓴다.
+    }
+}
+```
+<br/>
+
+
+#### JSX 조건문 표현 방식
+- useRef()로 선언하면 데이터가 변경되어도 return 부분이 재실행 되지 않는다.
+- (state는 바뀌면 리랜더링된다.)
+- 클래스형에선 this에 정의되었던 변수를 useRef로 정의한다.
+> React JSX에서의 조건문 표현방식 예시
+```javascript
+render() {
+    const { result } = this.state;
+    <>
+        {/* (1) 삼항연산자로 조건문 표현 */}
+        {
+            result.length === 0 
+            ? null 
+            : <div>평균 시간: {result.reduce((a, c)=> a + c)/result.length}ms</div>
+        }
+
+        {/* (2) 조건연산자로 조건문 표현 */}
+        {
+            result.length === 0 
+            && <div>평균 시간: {result.reduce((a, c)=> a + c)/result.length}ms</div>
+        }
+
+        {/* (3) 조건문 함수로 표현 */}
+        {this.renderAverage()}
+
+        {/* (4) 즉시실행 함수로 표현 */}
+        {(() => {
+            if (result.length === 0) {
+                return null;
+            } else {
+                return <>
+                    <div>평균 시간: {result.reduce((a, c)=> a + c)/result.length}ms</div>
+                </>
+            }
+        })}
+    </>
+}
+```
+> Hooks ref 변수 정의 예시
+```javascript
+const Test = () => {
+    const startTime = useRef(null);
+    (...)
+    testFunc = () => {
+        startTime.current = new Date(); //useRef는 current를 쓴다.
+    }
+}
+```
+<br/>
+
+
+
 <br/>
