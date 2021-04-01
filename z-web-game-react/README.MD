@@ -9,6 +9,7 @@
 - 리액트 JSX 내에선 class를 사용할 수 없다. 대신 className을 사용한다.
 - <label>의 for도 사용할 수 없다. 대신 htmlFor을 사용한다.
 - 리액트는 setState를 비동기로 모아서 한번에 처리하기 때문에 렌더링이 한번 이뤄지도록 해준다.
+- input에 onChange 이벤트를 정의하지 않을 경우 defaultValue로 값을 부여한다.
 
 > constructor 사용 예시  
 ``` javascript
@@ -173,42 +174,32 @@ inputRef.current.focus(); //dom에 접근할 때는 current를 붙이고 사용�
 
 #### 2.끝말잇기 Note
 
-개발준비
-1. 개발환경 세팅
-> cd [프로젝트 경로]
-> npm init
-> npm i react react-dom
-<br/>
-
-2. 웹팩 설치하기
-- "-D": 개발용으로만 웹팩을 사용할 것임을 명시한다.
-- package.json의 "devDependencies"에 버전 정보가 명시된다.
-> npm i -D webpack webpack-cli
-<br/>
-
-- 프로젝트 경로에 "webpack.config.js" file을 생성하고 빈 모듈을 작성한다.
-``` javascript
-module.exports = {}
+webpack 개발환경 세팅
+[webpack 설명 참고 사이트](https://degurii.tistory.com/96)
+[webpack preset-env 설정 참고 사이트](https://github.com/browserslist/browserslist)
+[webpack react-fast-refrest 참고 사이트](https://dev-momo.tistory.com/entry/React-Fast-Refresh)
+``` cmd
+$ npm init
+$ npm i react react-dom
+$ npm i -D webpack webpack-cli
+$ npm i -D @babel/core @babel/preset-env @babel/preset-react @babel/plugin-proposal-class-properties babel-loader
+$ npm i -D react-refresh @pmmmvh/react-refresh-webpack-plugin
+$ npm i -D webpack-dev-server
 ```
 <br/>
 
-- 프로젝트 경로에 "client.jsx" file을 생성하고 react, react-dom을 불러오는 소스를 작성한다.
+웹팩으로 빌드하기
+- package.json의 "script"에 "dev": "webpack" 을 작성한다.
+- webpack-cli 4버전 이상 기준 cli이다.
 ``` javascript
-const React = require('react');
-const ReactDom = require('react-dom');
+"scripts": {
+    "dev": "webpack serve --env development"
+},
 ```
+> npm run dev
+
 <br/>
 
-3. 모듈 시스템과 웹팩 설정
-- webpack 설정을 작성한다.
-> webpack.config.js 작성 예시 (작성중)
-``` javascript
-```
-
-4. 웹팩으로 빌드하기
-5. 구구단 웹팩으로 빌드하기
-6. @babel/preset-env와 plugins
-7. 끝말잇기 Class 만들기
 
 
 
