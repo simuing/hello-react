@@ -175,10 +175,14 @@ inputRef.current.focus(); //dom에 접근할 때는 current를 붙이고 사용�
 ``` cmd
 $ npm init
 $ npm i react react-dom
+$ npm i path
 $ npm i -D webpack webpack-cli
 $ npm i -D @babel/core @babel/preset-env @babel/preset-react @babel/plugin-proposal-class-properties babel-loader
-$ npm i -D react-refresh @pmmmvh/react-refresh-webpack-plugin
+$ npm i -D react-refresh @pmmmwh/react-refresh-webpack-plugin
 $ npm i -D webpack-dev-server
+npm i react-refresh/babel
+
+npm i -D react-hot-loader webpack-dev-server
 ```
 <br/>
 

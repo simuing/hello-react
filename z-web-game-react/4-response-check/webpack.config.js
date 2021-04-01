@@ -1,8 +1,12 @@
 const path = require('path');
+const webpack = require('webpack');
  
-module.exports = () => {
+module.exports = (env) => {
+  console.log('NODE_ENV: ', env.NODE_ENV); // 'local'
+  console.log('Production: ', env.production); // true
+
   return {
-    name: 'number-baseball',
+    name: '4-response-check',
     mode: 'development',
     devtool: 'eval',
    
@@ -32,7 +36,8 @@ module.exports = () => {
               '@babel/preset-react',
             ],
             plugins: [
-              '@babel/plugin-proposal-class-properties'
+              '@babel/plugin-proposal-class-properties',
+              'react-refresh/babel' //babel이 과거버전으로 컴파일할 때 핫 리로딩까지 지원을 해준다.
             ],
           },
         },
@@ -40,15 +45,11 @@ module.exports = () => {
     },
     plugins: [
       new webpack.LoaderOptionsPlugin({ debug: true }),
+      // new RefreshWebpackPlugin()
     ],
     output: {
-      path: path.resolve(__dirname, 'dist'),
       filename: 'app.js',
-    },
-    devServer: {
-      contentBase: path.join(__dirname, '/'),
-      compress: true,
-      port: 9000,
-    },
+      path: path.resolve(__dirname, 'dist'),
+    }
   }
 };
