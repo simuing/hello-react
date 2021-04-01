@@ -3,13 +3,14 @@
 인프런 『웹 게임을 만들며 배우는 React』 공부 기록입니다.
 <br/>
 
-#### 1.구구단 Note
-- constructor를 생략해서 써도 된다.
+### Study Notes
+- 클래스형에서 constructor를 생략해서 써도 된다.
 - 생략해서 쓰는 경우 this.state가 아닌 state로 선언한다.
 - 리액트 JSX 내에선 class를 사용할 수 없다. 대신 className을 사용한다.
 - <label>의 for도 사용할 수 없다. 대신 htmlFor을 사용한다.
 - 리액트는 setState를 비동기로 모아서 한번에 처리하기 때문에 렌더링이 한번 이뤄지도록 해준다.
 - input에 onChange 이벤트를 정의하지 않을 경우 defaultValue로 값을 부여한다.
+- this.setState는 render()함수를 호출하기 때문에 render()함수 안에 작성하면 안된다.(무한루프)
 
 > constructor 사용 예시  
 ``` javascript
@@ -101,7 +102,7 @@ render() {
 ```
 <br/>
 
-##### 클래스형과 함수형의 state 선언 차이
+#### 클래스형과 함수형의 state 선언 차이
 - 클래스형
     - 클래스형은 state 초기화를 한번에 선언하는 것이 좋다.
     - state가 변경되면 render() 함수가 실행된다.
@@ -133,7 +134,7 @@ const GuGuDan = () => {
 <br/>
 
 
-##### 클래스형과 함수형의 ref 사용 차이
+#### 클래스형과 함수형의 ref 사용 차이
 > 클래스형에서의 ref 사용 예시
 ``` javascript
 input; //ref가 바라보는 변수
@@ -165,16 +166,9 @@ render() {
 inputRef.current.focus(); //dom에 접근할 때는 current를 붙이고 사용해야한다.
 ```
 <br/>
-
-
-
-
-
 <br/>
 
-#### 2.끝말잇기 Note
-
-webpack 개발환경 세팅
+#### webpack 개발환경 세팅
 [webpack 설명 참고 사이트](https://degurii.tistory.com/96)
 [webpack preset-env 설정 참고 사이트](https://github.com/browserslist/browserslist)
 [webpack react-fast-refrest 참고 사이트](https://dev-momo.tistory.com/entry/React-Fast-Refresh)
@@ -199,36 +193,40 @@ $ npm i -D webpack-dev-server
 > npm run dev
 
 <br/>
-
-
-
-
 <br/>
 
-#### 3.숫자야구 Note
-노드 모듈 시스템에서 아래 두 구문은 같다.
-```javascript 
-module.exports = { hello: 'a' }; 
-exports.hello = 'a';
+#### PureComponent 설명
+- Component는 setState마다 렌더링이 다시 된다.
+- shouldComponentUpdate 로 렌더링이 다시 되는 경우를 지정할 수 있다.
+- PureComponent는 위 기능을 자동으로 구현해준 컴포넌트이다.
+- 불변성을 지키지 않고 원본을 수정하는 경우 PureComponent도 인지하지 못한다.
+- Component, PureComponent 모두 state의 불변성을 지켜주어야 한다.
+<br/>
+
+#### memo 설명
+- Hooks에서는 Component+shouldComponentUpdate 와 PureComponent 대신 
+- memo를 사용하여 성능 최적화를 할 수 있다.
+- React {memo}는 메모이제이션을 뜻한다.
+- 컴포넌트의 화살표 함수를 memo()로 감싸서 사용한다.
+- 자식 컴포넌트가 모두 PureComponent나 Hooks+memo로 이뤄져 있으면
+- 부모 컴포넌트도 사용할 수 있다.
+<br/>
+
+#### createRef 설명
+- 클래스형에서 ref를 선언할 때 람다식 대신 inputRef = createRef()로 선언하여 사용할 수 있다.
+- 람다식을 사용하는 경우 함수 안에 세밀한 작업이 가능한 장점이 있다.
+> createRef() 사용예시
+``` javascript
+inputRef = createRef();
 ```
-
+> 람다식 사용예시
+``` javascript
+inputRef;
+onInputRef = (c) => {
+    console.log();
+    //다른 동작
+    this.inputRef = c;
+}
+```
 <br/>
-
-리액트에선 require이 아닌 import from을 사용할 수 있다. babel이 require로 컴파일시키기 때문에 하위 버전 호환이 된다.
-
 <br/>
-
-#### 4.반응속도체크 Note
-
-<br/>
-
-#### 5.가위바위보 Note
-
-<br/>
-
-#### 6.로또 Note
-
-
-
-
-

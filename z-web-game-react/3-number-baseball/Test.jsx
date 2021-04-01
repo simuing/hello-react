@@ -35,7 +35,7 @@ import React, {  PureComponent, memo } from 'react';
 // }
 
 
-/* (1) memo 설명 */
+/* (2) memo 설명 */
 
 // Hooks에서는 Component+shouldComponentUpdate 와 PureComponent 대신 
 // memo를 사용하여 성능 최적화를 할 수 있다.
@@ -46,9 +46,28 @@ import React, {  PureComponent, memo } from 'react';
 // 자식 컴포넌트가 모두 PureComponent나 Hooks+memo로 이뤄져 있으면
 // 부모 컴포넌트도 사용할 수 있다.
 
+// const Test = memo(({ testInfo }) => {
+//     return (
+//         <div>{testInfo.result}</div>
+//     )
+// })
+
+/* (3) 3-13. props와 state 연결하기 */
 const Test = memo(({ testInfo }) => {
+    // testInfo는 부모가 넘긴 state정보이다.
+    // 자식 컴포넌트 Test는 부모의 state정보를 바꾸면 안된다. ex) testInfo.result = '1';
+    // 자식 컴포넌트의 state를 선언하여 Hooks로 받아 생성하고 사용하는 것이 좋다.
+    const [result, setResult] = useState(testInfo.result);
+
+    const onClick = () => {
+        setResult('1');
+    }
+
     return (
-        <div>{testInfo.result}</div>
+        <React.Fragment>
+            <div>{testInfo.result}</div>
+            <div onClick={onClick}>{result}</div>
+        </React.Fragment>
     )
 })
 
