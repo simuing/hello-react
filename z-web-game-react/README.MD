@@ -206,6 +206,15 @@ $ npm i -D webpack-dev-server
 <br/>
 
 #### 3.숫자야구 Note
+노드 모듈 시스템에서 아래 두 구문은 같다.
+```javascript 
+module.exports = { hello: 'a' }; 
+exports.hello = 'a';
+```
+
+<br/>
+
+리액트에선 require이 아닌 import from을 사용할 수 있다. babel이 require로 컴파일시키기 때문에 하위 버전 호환이 된다.
 
 <br/>
 
