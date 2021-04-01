@@ -24,7 +24,7 @@ module.exports = {
               '@babel/preset-env',
               {
                 targets: {
-                  browsers: ['> 1% in KR'], //browserslist
+                  browsers: ['> 5% in KR'], //browserslist
                 },
                 debug: true,
               },
@@ -46,7 +46,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'app.js',
-    // publicPath: '/dist/',
+    publicPath: '/dist/',
   },
   devServer: {
     publicPath: '/dist/',
