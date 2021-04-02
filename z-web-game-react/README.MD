@@ -400,3 +400,37 @@ componentDidUpdate
 componentWillUnmount
 ```
 <br/>
+
+#### [Hooks] useMemo와 useCallback으로 메모이제이션 구현
+- useMemo: 함수의 리턴 값을 기억한다.
+- useCallback: 함수 자체를 기억해둬서 새로 생성되지 않도록 한다.
+<br/>
+
+#### [Hooks] state 선언 시 주의사항
+- state 순서가 매우 중요하기 때문에 순서가 바뀌지 않도록 한다.
+- 조건문 안에 절대 넣으면 안된다.
+- 순서가 확실한 경우는 for문 안에 작성할 수 있다.
+- 웬만하면 함수나 반복문 안에도 넣지 않아야 한다.
+> 나쁜 사례 예시
+``` javascript
+const lottoNumbers = useMemo(() => getWinNumbers(), []); //배열의 요소가 바뀌면 함수 실행한다.
+const [winNumbers, setWinNumbers] = useState(lottoNumbers); //getWinNumbers를 바로 넣지 않고 memo를 적용하여 사용한다.
+if(조건){
+    const [redo, setRedo] = useState(false); //조건문안에 넣으면 안된다.
+}
+const timeouts = useRef([]);
+```
+``` javascript
+useEffect(() => {
+    useState(...) //다른 함수 내에 넣으면 안된다.
+});
+```
+<br/>
+
+
+
+
+#### [Hooks] useReducer와 useContext
+- 소규모 앱이면 useReducer와 useContext로 리덕스를 대체할 수 있다.(흉내)
+- 규모가 큰 앱이면 리덕스를 쓰게 된다. (useReducer와 useContext는 비동기 작업에 불편하기 때문이다.)
+<br/>
