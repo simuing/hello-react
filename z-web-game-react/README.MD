@@ -80,24 +80,39 @@ render() {
 ```
 <br/>
 
-- ref를 사용하여 DOM에 직접 접근을 할 수 있다.
-- document.querySelect('input')과 동일한 효과이다.
-> ref 사용예시
-``` javascript
-onSubmit = (e) => {
-    e.preventDefault();
-    (...)
-    this.input.focus(); // ref가 바라보는 변수로 직접 접근이 가능하다.
-}
-
-input; //ref가 바라보는 변수
-
+#### JSX 조건문 표현 방식
+> React JSX에서의 조건문 표현방식 예시
+```javascript
 render() {
-    return (
-        <React.Fragment>
-            <input ref={(c) => { this.input = c; }} type="number" />
-        </React.Fragment>
-    )
+    const { result } = this.state;
+    <>
+        {/* (1) 삼항연산자로 조건문 표현 */}
+        {
+            result.length === 0 
+            ? null 
+            : <div>평균 시간: {result.reduce((a, c)=> a + c)/result.length}ms</div>
+        }
+
+        {/* (2) 조건연산자로 조건문 표현 */}
+        {
+            result.length === 0 
+            && <div>평균 시간: {result.reduce((a, c)=> a + c)/result.length}ms</div>
+        }
+
+        {/* (3) 조건문 함수로 표현 */}
+        {this.renderAverage()}
+
+        {/* (4) 즉시실행 함수로 표현 */}
+        {(() => {
+            if (result.length === 0) {
+                return null;
+            } else {
+                return <>
+                    <div>평균 시간: {result.reduce((a, c)=> a + c)/result.length}ms</div>
+                </>
+            }
+        })}
+    </>
 }
 ```
 <br/>
@@ -135,6 +150,28 @@ const GuGuDan = () => {
 
 
 #### 클래스형과 함수형의 ref 사용 차이
+- ref를 사용하여 DOM에 직접 접근을 할 수 있다.
+- document.querySelect('input')과 동일한 효과이다.
+> ref 사용예시
+``` javascript
+onSubmit = (e) => {
+    e.preventDefault();
+    (...)
+    this.input.focus(); // ref가 바라보는 변수로 직접 접근이 가능하다.
+}
+
+input; //ref가 바라보는 변수
+
+render() {
+    return (
+        <React.Fragment>
+            <input ref={(c) => { this.input = c; }} type="number" />
+        </React.Fragment>
+    )
+}
+```
+<br/>
+
 > 클래스형에서의 ref 사용 예시
 ``` javascript
 input; //ref가 바라보는 변수
@@ -199,7 +236,7 @@ npm i -D react-hot-loader webpack-dev-server
 <br/>
 <br/>
 
-#### PureComponent 설명
+#### [class] PureComponent 설명
 - Component는 setState마다 렌더링이 다시 된다.
 - shouldComponentUpdate 로 렌더링이 다시 되는 경우를 지정할 수 있다.
 - PureComponent는 위 기능을 자동으로 구현해준 컴포넌트이다.
@@ -207,7 +244,7 @@ npm i -D react-hot-loader webpack-dev-server
 - Component, PureComponent 모두 state의 불변성을 지켜주어야 한다.
 <br/>
 
-#### memo 설명
+#### [Hooks] memo 설명
 - Hooks에서는 Component+shouldComponentUpdate 와 PureComponent 대신 
 - memo를 사용하여 성능 최적화를 할 수 있다.
 - React {memo}는 메모이제이션을 뜻한다.
@@ -216,7 +253,8 @@ npm i -D react-hot-loader webpack-dev-server
 - 부모 컴포넌트도 사용할 수 있다.
 <br/>
 
-#### createRef 설명
+
+#### [class] createRef() 설명
 - 클래스형에서 ref를 선언할 때 람다식 대신 inputRef = createRef()로 선언하여 사용할 수 있다.
 - 람다식을 사용하는 경우 함수 안에 세밀한 작업이 가능한 장점이 있다.
 > createRef() 사용예시
@@ -234,7 +272,7 @@ onInputRef = (c) => {
 ```
 <br/>
 
-#### Hooks에서의 ref
+#### [Hooks] useRef() 설명
 - useRef()로 선언하면 데이터가 변경되어도 return 부분이 재실행 되지 않는다.
 - (state는 바뀌면 리랜더링된다.)
 - 클래스형에선 this에 정의되었던 변수를 useRef로 정의한다.
@@ -261,45 +299,10 @@ const Test = () => {
 <br/>
 
 
-#### JSX 조건문 표현 방식
+#### [Hooks] ref 변수 정의 예시
 - useRef()로 선언하면 데이터가 변경되어도 return 부분이 재실행 되지 않는다.
 - (state는 바뀌면 리랜더링된다.)
 - 클래스형에선 this에 정의되었던 변수를 useRef로 정의한다.
-> React JSX에서의 조건문 표현방식 예시
-```javascript
-render() {
-    const { result } = this.state;
-    <>
-        {/* (1) 삼항연산자로 조건문 표현 */}
-        {
-            result.length === 0 
-            ? null 
-            : <div>평균 시간: {result.reduce((a, c)=> a + c)/result.length}ms</div>
-        }
-
-        {/* (2) 조건연산자로 조건문 표현 */}
-        {
-            result.length === 0 
-            && <div>평균 시간: {result.reduce((a, c)=> a + c)/result.length}ms</div>
-        }
-
-        {/* (3) 조건문 함수로 표현 */}
-        {this.renderAverage()}
-
-        {/* (4) 즉시실행 함수로 표현 */}
-        {(() => {
-            if (result.length === 0) {
-                return null;
-            } else {
-                return <>
-                    <div>평균 시간: {result.reduce((a, c)=> a + c)/result.length}ms</div>
-                </>
-            }
-        })}
-    </>
-}
-```
-> Hooks ref 변수 정의 예시
 ```javascript
 const Test = () => {
     const startTime = useRef(null);
@@ -311,13 +314,13 @@ const Test = () => {
 ```
 <br/>
 
-#### 클래스형 라이프 사이클 간단 정리
+#### [class] 라이프 사이클 간단 정리
 - 컴포넌트 생성 -> constructor -> render -> ref -> componentDidMount -> (setState/props 바뀔때 -> shouldComponentUpdate(true) -> render -> componentDidUpdate)
 - 부모가 나를 없앨 때 -> componentWillUnmount -> 소멸
 
-#### componentWillUnmount()를 활용하여 메모리 누수 방지
+#### [class] componentWillUnmount()를 활용하여 메모리 누수 방지
 - setInterval와 setTimeout를 사용한 경우 컴포넌트가 제거되기 직전에 실행되는 함수인 componentWillUnmount()를 활용하여 clear 해줘야한다.
-- Hooks에는 라이프 사이클 메소드를 사용할 수 없기 때문에 다르게 처리해줘야 한다.
+- Hooks에는 라이프 사이클 메소드를 사용할 수 없기 때문에 다르게 처리해줘야 한다. (useEffect로 흉내를 낸다.)
 ```javascript
 componentWillUnmount() {
     clearInterval(this.interval); 
@@ -325,7 +328,17 @@ componentWillUnmount() {
 ```
 <br/>
 
-#### 리액트에서 자주 쓰이는 메소드 호출 패턴 - 고차함수
+#### [Hooks] useEffect를 활용하여 메모리 누수 방지
+- setInterval와 setTimeout를 사용한 경우 컴포넌트가 제거되기 직전에 실행되는 함수인 componentWillUnmount()를 활용하여 clear 해줘야한다.
+- Hooks에는 라이프 사이클 메소드를 사용할 수 없기 때문에 다르게 처리해줘야 한다. (useEffect로 흉내를 낸다.)
+```javascript
+componentWillUnmount() {
+    clearInterval(this.interval); 
+}
+```
+<br/>
+
+#### 리액트에서 자주 쓰이는 패턴 - 고차함수
 - 기존 코드를 변경 코드로 사용할 수 있다.
 - 이 경우 () => 구문을 화살표 함수 끝에 추가로 작성한다.
 > 기존 코드 
@@ -356,6 +369,20 @@ render() {
 ```
 <br/>
 
+#### [Hooks] useEffect()
+- 클래스형의 라이프사이클을 흉내낼 때 사용하기도 한다.
+- useEffect의 첫 번째 인수는 함수이고, 두 번째 인수는 배열이다.
+- 두 번째 인수에 들어가는 변수가 변경될 때 useEffect가 실행된다.
+- 두 번째 인수가 클로저 문제를 해결하는데 사용된다.
+> useEffect() 예시
+``` javascript
+const interval = useRef();
 
-
+useEffect(() => { // componentDidMount, componenetDidUpdate 역할(1대1 대응은 아님)
+    interval.current = setInterval(changeHand, 100);
+    return () => { // componentWillUnmount 역할
+        clearInterval(interval.current);
+    }
+}, []);
+```
 <br/>
