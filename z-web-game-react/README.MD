@@ -386,3 +386,17 @@ useEffect(() => { // componentDidMount, componenetDidUpdate 역할(1대1 대응�
 }, []);
 ```
 <br/>
+
+#### [Hooks] useLayoutEffect()
+- useLayoutEffect()는 화면 리사이징 직전에 호출되는 함수이다.
+<br/>
+
+#### 클래스형과 함수형의 라이프 사이클 함수 차이
+- 클래스형은 가로, 함수형은 세로로 생각한다.
+- 함수형(Hooks useEffect로 구현한) 라이프 사이클 함수는 변수 하나에 묶을 수 있고 여러 개를 동시에 묶을 수 있다.
+``` javascript
+componentDidMount        result, imgCoord, score
+componentDidUpdate
+componentWillUnmount
+```
+<br/>
