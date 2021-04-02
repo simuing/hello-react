@@ -2,6 +2,8 @@
 ## z-react-game
 인프런 『웹 게임을 만들며 배우는 React』 공부 기록입니다.
 <br/>
+[강의소스 github(zerocho)](https://github.com/ZeroCho/react-webgame)  
+<br/>
 
 ### Study Notes
 - 클래스형에서 constructor를 생략해서 써도 된다.
