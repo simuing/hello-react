@@ -316,10 +316,42 @@ const Test = () => {
 - 부모가 나를 없앨 때 -> componentWillUnmount -> 소멸
 
 #### componentWillUnmount()를 활용하여 메모리 누수 방지
-- setInterval와 setTimeout를 사용한 경우 컴포넌트가 제거되기 직전에 실행되는 함수인 componentWillUnmount()를 활용하여 clear 해주기!
+- setInterval와 setTimeout를 사용한 경우 컴포넌트가 제거되기 직전에 실행되는 함수인 componentWillUnmount()를 활용하여 clear 해줘야한다.
+- Hooks에는 라이프 사이클 메소드를 사용할 수 없기 때문에 다르게 처리해줘야 한다.
 ```javascript
 componentWillUnmount() {
     clearInterval(this.interval); 
+}
+```
+<br/>
+
+#### 리액트에서 자주 쓰이는 메소드 호출 패턴 - 고차함수
+- 기존 코드를 변경 코드로 사용할 수 있다.
+- 이 경우 () => 구문을 화살표 함수 끝에 추가로 작성한다.
+> 기존 코드 
+``` javascript
+onClickBtn = (choice) => {
+    //...
+}
+render() {
+    return (
+        <>
+            <button onClick={() => this.onClickBtn('a')}></button>
+        </>
+    )
+}
+```
+> 변경 코드
+``` javascript
+onClickBtn = (choice) => () => {
+    //...
+}
+render() {
+    return (
+        <>
+            <button onClick={this.onClickBtn('a')}></button>
+        </>
+    )
 }
 ```
 <br/>
