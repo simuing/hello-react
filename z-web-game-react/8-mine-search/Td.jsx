@@ -38,7 +38,7 @@ const getTdText = (code) => {
         case CODE.NORMAL:
             return ''
         case CODE.MINE:
-            return 'X'
+            return ''
         case CODE.CLICKED_MINE:
             return '펑'
         case CODE.FLAG:
@@ -48,7 +48,7 @@ const getTdText = (code) => {
         case CODE.QUESTION_MINE:
             return '?'
         default:
-            return ''
+            return code || '';
     }
 }
 
@@ -94,7 +94,6 @@ const Td = ({ rowIndex, cellIndex }) => {
             case (CODE.QUESTION_MINE):  
                 dispatch({ type: NORMALIZE_CELL, row: rowIndex, cell: cellIndex }); // 정상복구
                 return;
-        
             default:
                 return;
         }

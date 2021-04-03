@@ -63,8 +63,6 @@ const plantMine = (row, cell, mine) => {
         const hor = shuffle[k] % cell;
         data[ver][hor] = CODE.MINE;
     }
-
-    console.log(data);
     return data;
 };
 
@@ -89,6 +87,33 @@ const reducer = (state, action) => {
             const tableData = [...state.tableData];
             tableData[action.row] = [...state.tableData[action.row]];
             tableData[action.row][action.cell] = CODE.OPENED;
+            let around = [];
+
+            //위쪽 칸 검사
+            if(tableData[action.row - 1]) {
+                around = around.concat(
+                    tableData[action.row - 1][action.cell - 1],
+                    tableData[action.row - 1][action.cell],
+                    tableData[action.row - 1][action.cell + 1],
+                )
+            }
+            //왼쪽, 오른쪽 칸 검사
+            around = around.concat(
+                tableData[action.row][action.cell - 1],
+                tableData[action.row][action.cell + 1],
+            )
+            //아래쪽 칸 검사
+            if(tableData[action.row + 1]) {
+                around = around.concat(
+                    tableData[action.row + 1][action.cell - 1],
+                    tableData[action.row + 1][action.cell],
+                    tableData[action.row + 1][action.cell + 1],
+                )
+            }
+            // 지뢰 수 세기
+            const count = around.filter((v) => [CODE.MINE, CODE.FLAG_MINE, CODE.QUESTION_MINE].includes(v)).length;
+            console.log(count);
+            tableData[action.row][action.cell] = count;
             return {
                 ...state,
                 tableData,
@@ -112,7 +137,6 @@ const reducer = (state, action) => {
             } else {
                 tableData[action.row][action.cell] = CODE.FLAG;
             }
-            console.log(tableData)
             return {
                 ...state,
                 tableData,
