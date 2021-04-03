@@ -44,8 +44,9 @@ z : 제로초님 강의(zerocho)
 #### z-react-game
 인프런 『[웹 게임을 만들며 배우는 React](httpswww.inflearn.comcourseweb-game-reactdashboard)』
 
+#### tsk-react-with-typescript
+인프런 『[타입스크립트 코리아 : React with TypeScript 세미나](https://www.inflearn.com/course/react-with-typescript/)』
+
 
 <br/>  
 <br/>  
-
-
