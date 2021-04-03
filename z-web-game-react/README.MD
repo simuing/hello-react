@@ -433,6 +433,9 @@ useEffect(() => {
 
 
 #### [Hooks] useReducer와 useContext
+- useReducer는 리액트가 리덕스에서 가져온 개념이다.
 - 소규모 앱이면 useReducer와 useContext로 리덕스를 대체할 수 있다.(흉내)
 - 규모가 큰 앱이면 리덕스를 쓰게 된다. (useReducer와 useContext는 비동기 작업에 불편하기 때문이다.)
+- 리덕스는 동기적으로 state가 바뀌지만 useReducer는 비동기적으로 state가 바뀐다.
+- 비동기 state 변경시엔 useEffect를 써야한다는 것을 기억한다.
 <br/>
