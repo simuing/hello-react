@@ -11,7 +11,7 @@ export const CODE = {
     FLAG_MINE: -5,     //지뢰칸에 깃발
     CLICKED_MINE: -6,  //지뢰 클릭
     OPENED: 0,         //정상적으로 연 칸 (0 이상이면 OPENED)
-}
+};
 
 //export 해서 다른 컴포넌트에서 사용할 수 있도록 한다.
 export const TableContext = createContext({ 
@@ -23,7 +23,49 @@ const initialState = {
     tableData: [],
     timer: 0,
     result: '',
-}
+};
+
+/**
+ * @function plantMine 지뢰를 심는 함수
+ * @param {*} row  가로 칸 수
+ * @param {*} cell 세로 칸 수
+ * @param {*} mine 지뢰 수
+ */
+const plantMine = (row, cell, mine) => {
+    console.log(row, cell, mine);
+
+    //10x10 테이블 데이터를 추출한다.
+    const candidate = Array(row * cell).fill().map((arr, i) => {
+        return i;
+    });
+
+    //지뢰를 심을 위치를 담는다.
+    const shuffle = []; 
+    while (candidate.length > row * cell - mine) {
+        const chosen = candidate.splice(Math.floor(Math.random() * candidate.length), 1)[0];
+        shuffle.push(chosen);
+    }
+
+    //10x10을 돌고 2차원 배열 테이블이 만들어진다.
+    const data = [];
+    for (let i = 0; i < row; i++) {
+        const rowData = [];
+        data.push(rowData);
+        for (let j = 0; j < cell; j++) {
+            rowData.push(CODE.NORMAL);
+        }
+    }
+
+    // 몇 콤마 몇인지를 계산하기 위한 코드
+    for (let k = 0; k < shuffle.length; k++) {
+        const ver = Math.floor(shuffle[k] / cell);
+        const hor = shuffle[k] % cell;
+        data[ver][hor] = CODE.MINE;
+    }
+
+    console.log(data);
+    return data;
+};
 
 export const START_GAME = 'START_GAME';
 
@@ -38,7 +80,7 @@ const reducer = (state, action) => {
         default:
             return state;
     }
-}
+};
 
 const MineSearch = () => {
     const [state, dispatch] = useReducer(reducer, initialState);
