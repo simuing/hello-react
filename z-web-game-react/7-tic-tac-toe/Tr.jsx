@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { memo } from 'react';
 import Td from './Td';
 
 const Tr = memo(({ dispatch, rowData, rowIndex}) => {

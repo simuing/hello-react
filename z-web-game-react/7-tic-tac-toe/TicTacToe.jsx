@@ -1,4 +1,4 @@
-import React, {useState, useReducer, useCallback, useEffect } from 'react';
+import React, { useReducer, useCallback, useEffect } from 'react';
 import Table from './Table';
 
 // useReducer: 자식의 자식 컴포넌트로 연달아 데이터를 전달해야 하는 경우
@@ -17,10 +17,10 @@ const initialState = {
 };
 
 // action 변수는 대문자로 하는게 좋다.(커뮤니티 암묵적 룰)
-const SET_WINNER = 'SET_WINNER';
-const CLICK_CELL = 'CLICK_CELL';
-const CHANGE_TURN = 'CHANGE_TURN';
-const RESET_GAME = 'RESET_GAME';
+export const SET_WINNER = 'SET_WINNER';
+export const CLICK_CELL = 'CLICK_CELL';
+export const CHANGE_TURN = 'CHANGE_TURN';
+export const RESET_GAME = 'RESET_GAME';
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -66,7 +66,7 @@ const reducer = (state, action) => {
 
 const TicTacToe = () => {
     const [state, dispatch] = useReducer(reducer, initialState)
-    const { tableData, winner, recentCell } = state;
+    const { tableData, winner, turn, recentCell } = state;
     // console.log('TicTacToe render');
     // console.log(initialState);
 
@@ -98,7 +98,8 @@ const TicTacToe = () => {
             win = true;
         }
         if (win) { // 승리시
-            dispatch({ type: SET_WINNER, winner: turn })
+            dispatch({ type: SET_WINNER, winner: turn });
+            dispatch({ type: RESET_GAME });
         } else {
             let all = true; // all이 true면 무승부라는 뜻
             tableData.forEach((row) => { //무승부검사
@@ -110,6 +111,7 @@ const TicTacToe = () => {
             })
             if (all) {
                 // 무승부
+                alert('무승부! 재시작합니다.')
                 dispatch({ type: RESET_GAME });
             } else {
                 dispatch({ type: CHANGE_TURN });
