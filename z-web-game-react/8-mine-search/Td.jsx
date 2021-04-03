@@ -1,4 +1,4 @@
-import React, { useContext, useCallback } from 'react';
+import React, { useContext, useCallback, memo, useMemo } from 'react';
 import { CODE, OPEN_CELL, CLICK_MINE, FLAG_CELL, QUESTION_CELL, NORMALIZE_CELL, TableContext } from './MineSearch';
 
 
@@ -38,7 +38,7 @@ const getTdText = (code) => {
         case CODE.NORMAL:
             return ''
         case CODE.MINE:
-            return ''
+            return 'X'
         case CODE.CLICKED_MINE:
             return '펑'
         case CODE.FLAG:
@@ -52,7 +52,7 @@ const getTdText = (code) => {
     }
 }
 
-const Td = ({ rowIndex, cellIndex }) => {
+const Td = memo(({ rowIndex, cellIndex }) => {
     const { tableData, dispatch, halted } = useContext(TableContext);
 
     const onClickTd = useCallback(() => {
@@ -99,13 +99,29 @@ const Td = ({ rowIndex, cellIndex }) => {
         }
     }, [tableData[rowIndex][cellIndex], halted])
 
-    return (
+    // Context api 최적화 방법 1 - useMemo를 사용하여 Context api 최적화
+    /*
+    return useMemo(()=> (
         <td 
             style={getTdStyle(tableData[rowIndex][cellIndex])}
             onClick={onClickTd}
             onContextMenu={onRightClickTd}
         >{getTdText(tableData[rowIndex][cellIndex])}</td>
+    )); */
+
+    // Context api 최적화 방법 2 - memo로 감싼 별도의 컴포넌트 생성
+    
+    return <RealTd onClickTd={onClickTd} onRightClickTd={onRightClickTd} data={tableData[rowIndex][cellIndex]} />
+})
+
+const RealTd = memo(({ onClickTd, onRightClickTd, data }) => {
+    return (
+        <td 
+            style={getTdStyle(data)}
+            onClick={onClickTd}
+            onContextMenu={onRightClickTd}
+        >{getTdText(data)}</td>
     )
-}
+})
 
 export default Td;
