@@ -439,3 +439,48 @@ useEffect(() => {
 - 리덕스는 동기적으로 state가 바뀌지만 useReducer는 비동기적으로 state가 바뀐다.
 - 비동기 state 변경시엔 useEffect를 써야한다는 것을 기억한다.
 <br/>
+
+#### [Hooks] createContext와 Provider
+- 리액트의 context를 사용하면 부모 컴포넌트가 자식 컴포넌트로, 자식 컴포넌트가 손자 컴포넌트로 데이터를 전달하는 것이 아닌 부모에서 모두에게 전달하는 식으로 사용할 수 있다.
+- createContext를 사용하면 <Provider value>로 데이터 정보를 전달해 주어야 한다.
+- <Provider>가 포함된 부모 컴포넌트가 새로 생성될 때마다 value정보와 자식 컴포넌트 정보가 새로 생성되어 성능 최적화가 어려울 수 있다. 보통 useMemo로 캐싱을 해준다.
+
+> createContext와 Provider 적용 예시
+``` javascript 
+import React, { useReducer, createContext } from 'react';
+
+//export 해서 다른 컴포넌트에서 사용할 수 있도록 한다.
+export const TableContext = createContext({ 
+    tableData: [],      //배열 모양만 맞춰준다.
+    dispatch: () => {}, //함수 모양만 맞춰준다.
+});
+
+
+const MineSearch = () => {
+    const [state, dispatch] = useReducer(reducer, initialState);
+
+    // useMemo로 캐싱해주어 성능 최적화를 한다.
+    // dispatch는 절대로 바뀌지 않기 때문에 바뀌는 목록엔 추가하지 않아도 된다.
+    const value = useMemo(() => ({ tableData: state.tableData, dispatch }), [state.tableData]);
+
+    return (
+        <TableContext.Provider value={value}>
+            <Form/>
+            <div>{state.timer}</div>
+            <Table />
+            <div>{state.result}</div>
+        </TableContext.Provider>
+    )
+}
+```
+> Provider로 전달된 데이터를 자식 컴포넌트가 사용하는 예시
+``` javascript
+import React, { useContext } from 'react';
+import { TableContext } from './MineSearch';
+
+const Form = () => {
+    //...
+    const { dispatch } = useContext(TableContext);
+}
+```
+<br/>
